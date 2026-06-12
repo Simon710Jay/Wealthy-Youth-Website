@@ -73,13 +73,43 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Slider */}
-      <section className="relative h-screen overflow-hidden">
+      <section className="relative h-screen overflow-hidden bg-black">
+        {/* Floating Particles */}
+        <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
+          {[...Array(30)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1.5 h-1.5 bg-accent rounded-full shadow-[0_0_15px_rgba(212,175,55,0.8)]"
+              initial={{
+                x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1920),
+                y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1080),
+                opacity: Math.random() * 0.5 + 0.1,
+                scale: Math.random() * 1.5 + 0.5
+              }}
+              animate={{
+                y: [null, Math.random() * -300 - 100],
+                x: [null, Math.random() * 100 - 50],
+                opacity: [null, Math.random() * 0.8 + 0.2, 0]
+              }}
+              transition={{
+                duration: Math.random() * 15 + 10,
+                repeat: Infinity,
+                ease: "linear",
+                delay: Math.random() * 5
+              }}
+            />
+          ))}
+        </div>
+
         {heroSlides.map((slide, index) => (
           <motion.div
             key={index}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: currentSlide === index ? 1 : 0 }}
-            transition={{ duration: 0.7 }}
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ 
+              opacity: currentSlide === index ? 1 : 0,
+              scale: currentSlide === index ? 1 : 1.05
+            }}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
             className="absolute inset-0"
             style={{ pointerEvents: currentSlide === index ? 'auto' : 'none' }}
           >
@@ -87,33 +117,41 @@ export default function Home() {
               className="absolute inset-0 bg-cover bg-center"
               style={{ backgroundImage: `url(${slide.image})` }}
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-secondary/95 via-secondary/80 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-secondary/70 to-black/50" />
             </div>
 
-            <div className="relative h-full container mx-auto px-4 flex items-center">
+            <div className="relative h-full container mx-auto px-4 flex items-center z-20">
               <motion.div
-                initial={{ y: 50, opacity: 0 }}
-                animate={{ y: currentSlide === index ? 0 : 50, opacity: currentSlide === index ? 1 : 0 }}
-                transition={{ delay: 0.2, duration: 0.8 }}
-                className="max-w-3xl text-white"
+                initial={{ y: 30, opacity: 0 }}
+                animate={{ y: currentSlide === index ? 0 : 30, opacity: currentSlide === index ? 1 : 0 }}
+                transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
+                className="max-w-4xl text-white"
               >
+                <motion.div 
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: currentSlide === index ? 1 : 0, x: currentSlide === index ? 0 : -20 }}
+                  transition={{ delay: 0.2, duration: 0.6 }}
+                  className="inline-block mb-4 px-4 py-1.5 rounded-full border border-accent/30 bg-accent/10 backdrop-blur-md text-accent tracking-widest text-sm font-semibold uppercase shadow-[0_0_15px_rgba(212,175,55,0.2)]"
+                >
+                  Grace Nation International
+                </motion.div>
                 <motion.h1
-                  className="mb-6"
-                  style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', fontWeight: 700, lineHeight: 1.1 }}
+                  className="mb-6 tracking-tight drop-shadow-2xl"
+                  style={{ fontSize: 'clamp(3rem, 6vw, 5.5rem)', fontWeight: 800, lineHeight: 1.1 }}
                 >
                   {slide.title}
                 </motion.h1>
                 <motion.p
-                  className="mb-10 text-xl md:text-2xl text-gray-200"
+                  className="mb-10 text-xl md:text-2xl text-gray-200/90 font-light max-w-2xl"
                   style={{ lineHeight: 1.6 }}
                 >
                   {slide.subtitle}
                 </motion.p>
-                <div className="flex flex-wrap gap-4">
+                <div className="flex flex-wrap gap-5">
                   <Button
                     asChild
                     size="lg"
-                    className="bg-accent hover:bg-accent/90 text-secondary px-8 py-6 text-lg font-semibold"
+                    className="bg-gradient-to-r from-accent to-[#E5C76B] hover:opacity-90 text-foreground px-10 py-7 text-lg font-bold rounded-xl shadow-[0_4px_25px_rgba(212,175,55,0.4)] hover:shadow-[0_4px_35px_rgba(212,175,55,0.6)] transition-all duration-300"
                   >
                     <Link href="/membership">Join Wealthy Youth</Link>
                   </Button>
@@ -121,10 +159,10 @@ export default function Home() {
                     asChild
                     size="lg"
                     variant="outline"
-                    className="border-2 border-white text-white hover:bg-white hover:text-secondary px-8 py-6 text-lg font-semibold"
+                    className="border-2 border-white/40 bg-white/5 backdrop-blur-md text-white hover:bg-white hover:text-foreground px-10 py-7 text-lg font-semibold rounded-xl transition-all duration-300"
                   >
                     <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
-                      <Play className="mr-2 w-5 h-5" />
+                      <Play className="mr-3 w-5 h-5" />
                       Watch Live
                     </a>
                   </Button>
@@ -135,13 +173,13 @@ export default function Home() {
         ))}
 
         {/* Slider Controls */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-3 z-10">
+        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex gap-4 z-30">
           {heroSlides.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}
-              className={`h-2 rounded-full transition-all ${
-                currentSlide === index ? 'bg-accent w-12' : 'bg-white/50 w-2 hover:bg-white/75'
+              className={`h-1.5 rounded-full transition-all duration-500 ${
+                currentSlide === index ? 'bg-accent w-16 shadow-[0_0_10px_rgba(212,175,55,0.8)]' : 'bg-white/40 w-4 hover:bg-white/70'
               }`}
             />
           ))}
@@ -149,15 +187,15 @@ export default function Home() {
 
         <button
           onClick={prevSlide}
-          className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 flex items-center justify-center text-white transition-colors z-10"
+          className="absolute left-6 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-accent hover:border-accent hover:text-foreground flex items-center justify-center text-white transition-all duration-300 shadow-lg z-30 group"
         >
-          <ChevronLeft className="w-6 h-6" />
+          <ChevronLeft className="w-7 h-7 group-hover:-translate-x-1 transition-transform" />
         </button>
         <button
           onClick={nextSlide}
-          className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 flex items-center justify-center text-white transition-colors z-10"
+          className="absolute right-6 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-accent hover:border-accent hover:text-foreground flex items-center justify-center text-white transition-all duration-300 shadow-lg z-30 group"
         >
-          <ChevronRight className="w-6 h-6" />
+          <ChevronRight className="w-7 h-7 group-hover:translate-x-1 transition-transform" />
         </button>
       </section>
 
