@@ -91,7 +91,7 @@ export default function Resources() {
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1920&q=80)' }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-secondary/90 to-primary/90" />
+          <div className="absolute inset-0 bg-black/60" />
         </div>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -152,7 +152,7 @@ export default function Resources() {
                 <Card className="h-full hover:shadow-xl transition-all hover:-translate-y-1 border-2 hover:border-primary">
                   <CardHeader>
                     <div className="flex items-start justify-between mb-4">
-                      <div className="w-14 h-14 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center">
+                      <div className="w-14 h-14 bg-primary rounded-xl flex items-center justify-center">
                         <resource.icon className="w-7 h-7 text-white" />
                       </div>
                       <Badge className="bg-accent text-secondary">{resource.type}</Badge>
@@ -179,7 +179,7 @@ export default function Resources() {
                       </div>
                     </div>
 
-                    <Button className="w-full bg-gradient-to-r from-primary to-accent hover:opacity-90">
+                    <Button className="w-full bg-primary hover:opacity-90">
                       <Download className="w-4 h-4 mr-2" />
                       Download Now
                     </Button>
@@ -192,7 +192,7 @@ export default function Resources() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-r from-secondary to-primary text-white">
+      <section className="py-24 bg-primary text-white">
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

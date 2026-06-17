@@ -1,0 +1,56 @@
+{
+  "events": [
+    {
+      "id": "wealth-summit-2026",
+      "slug": "wealth-summit-2026",
+      "title": "Wealth Summit 2026",
+      "date": "2026-08-15",
+      "time": "09:00 AM - 05:00 PM",
+      "location": "Grace Nation Main Auditorium",
+      "description": "The annual gathering of young kingdom leaders focused on wealth creation, divine purpose, and global impact.",
+      "speakers": [
+        "Dr. John Doe",
+        "Pastor Jane Smith"
+      ],
+      "banner": "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800&q=80",
+        "https://images.unsplash.com/photo-1505236858219-8359eb29e329?w=800&q=80"
+      ]
+    }
+  ],
+  "photos": [
+    {
+      "id": "photo-1",
+      "url": "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&q=80",
+      "title": "Worship Session",
+      "category": "Worship"
+    },
+    {
+      "id": "photo-2",
+      "url": "https://images.unsplash.com/photo-1438232992991-995b7058bbb3?w=800&q=80",
+      "title": "Youth Gathering",
+      "category": "Conference"
+    }
+  ],
+  "videos": [
+    {
+      "id": "video-1",
+      "title": "Finding Purpose in Chaos",
+      "url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      "thumbnail": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800&q=80",
+      "category": "Sermons"
+    }
+  ],
+  "livestreams": [
+    {
+      "id": "live-1",
+      "title": "Sunday Encounter Service",
+      "status": "upcoming",
+      "date": "2026-06-15",
+      "url": "https://www.youtube.com/embed/live_stream?channel=UCX6OQ3DkcsbYNE6H8uQQuVA",
+      "thumbnail": "https://images.unsplash.com/photo-1516280440502-385fbcebf0db?w=800&q=80"
+    }
+  ],
+  "registrations": []
+}

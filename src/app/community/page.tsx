@@ -87,7 +87,7 @@ export default function Community() {
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=1920&q=80)' }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-secondary/90 to-primary/90" />
+          <div className="absolute inset-0 bg-black/60" />
         </div>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -288,7 +288,7 @@ export default function Community() {
                       ))}
                     </div>
 
-                    <Button size="lg" className="w-full bg-gradient-to-r from-primary to-accent hover:opacity-90">
+                    <Button size="lg" className="w-full bg-primary hover:opacity-90">
                       Apply for Mentorship
                     </Button>
                   </CardContent>

@@ -1,6 +1,6 @@
 "use client";
 import Link from 'next/link';
-import { Mail, Phone, MapPin, Facebook, Instagram, Video, MessageCircle, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Facebook, Instagram, Video, MessageCircle, ArrowRight } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { useState } from 'react';
@@ -17,8 +17,8 @@ export default function Footer() {
   const quickLinks = [
     { name: 'Home', path: '/' },
     { name: 'About Us', path: '/about' },
-    { name: 'Events', path: '/events' },
-    { name: 'Sermons', path: '/sermons' },
+    { name: 'Events', path: '/#events' },
+    { name: 'Sermons', path: '/#media' },
     { name: 'Shop', path: '/shop' },
   ];
 
@@ -31,52 +31,45 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-secondary text-white">
+    <footer className="bg-primary text-white border-t border-white/10">
       {/* Main Footer */}
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+      <div className="container mx-auto px-4 md:px-8 py-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">
           {/* About */}
-          <div>
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center shadow-lg">
-                <span className="text-white font-bold text-xl">WY</span>
-              </div>
-              <div>
-                <h3 className="font-bold text-lg">Wealthy Youth</h3>
-                <p className="text-xs text-gray-300">Grace Nation International</p>
-              </div>
+          <div className="space-y-8">
+            <div>
+              <h3 className="font-playfair font-bold text-2xl tracking-tight leading-none mb-1">
+                WEALTHY YOUTH
+              </h3>
+              <p className="text-xs font-playfair italic text-white/70">An Expression of Grace Nation</p>
             </div>
-            <p className="text-sm text-gray-300 mb-6">
+            <p className="text-sm text-white/80 font-light leading-relaxed">
               Empowering the next generation through faith, leadership, innovation, and purpose.
               Raising kingdom leaders for global impact.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 rounded-full bg-white/10 hover:bg-accent flex items-center justify-center transition-colors">
-                <Facebook className="w-5 h-5" />
+              <a href="#" className="w-12 h-12 bg-white text-black hover:bg-white/90 rounded-full flex items-center justify-center transition-colors shadow-sm">
+                <Facebook className="w-5 h-5 fill-current" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/10 hover:bg-accent flex items-center justify-center transition-colors">
+              <a href="#" className="w-12 h-12 bg-white text-black hover:bg-white/90 rounded-full flex items-center justify-center transition-colors shadow-sm">
                 <Instagram className="w-5 h-5" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/10 hover:bg-accent flex items-center justify-center transition-colors">
+              <a href="#" className="w-12 h-12 bg-white text-black hover:bg-white/90 rounded-full flex items-center justify-center transition-colors shadow-sm">
                 <Video className="w-5 h-5" />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/10 hover:bg-accent flex items-center justify-center transition-colors">
-                <MessageCircle className="w-5 h-5" />
               </a>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-bold text-lg mb-6">Quick Links</h3>
-            <ul className="space-y-3">
+            <h3 className="font-playfair font-bold text-lg mb-8 uppercase tracking-widest text-white">Explore</h3>
+            <ul className="space-y-4">
               {quickLinks.map((link) => (
                 <li key={link.path}>
                   <Link
                     href={link.path}
-                    className="text-sm text-gray-300 hover:text-accent transition-colors flex items-center gap-2 group"
+                    className="text-sm text-white/80 hover:text-white transition-colors font-medium"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-accent opacity-0 group-hover:opacity-100 transition-opacity" />
                     {link.name}
                   </Link>
                 </li>
@@ -86,15 +79,14 @@ export default function Footer() {
 
           {/* Resources */}
           <div>
-            <h3 className="font-bold text-lg mb-6">Resources</h3>
-            <ul className="space-y-3">
+            <h3 className="font-playfair font-bold text-lg mb-8 uppercase tracking-widest text-white">Resources</h3>
+            <ul className="space-y-4">
               {resources.map((link, index) => (
                 <li key={index}>
                   <Link
                     href={link.path}
-                    className="text-sm text-gray-300 hover:text-accent transition-colors flex items-center gap-2 group"
+                    className="text-sm text-white/80 hover:text-white transition-colors font-medium"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-accent opacity-0 group-hover:opacity-100 transition-opacity" />
                     {link.name}
                   </Link>
                 </li>
@@ -104,35 +96,35 @@ export default function Footer() {
 
           {/* Contact & Newsletter */}
           <div>
-            <h3 className="font-bold text-lg mb-6">Contact Us</h3>
-            <ul className="space-y-4 mb-6">
-              <li className="flex items-start gap-3 text-sm text-gray-300">
-                <MapPin className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+            <h3 className="font-playfair font-bold text-lg mb-8 uppercase tracking-widest text-white">Connect</h3>
+            <ul className="space-y-4 mb-10">
+              <li className="flex items-start gap-4 text-sm text-white/80 font-medium">
+                <MapPin className="w-5 h-5 text-white shrink-0 mt-0.5" />
                 <span>123 Kingdom Street, City, State 12345</span>
               </li>
-              <li className="flex items-center gap-3 text-sm text-gray-300">
-                <Phone className="w-5 h-5 text-accent flex-shrink-0" />
-                <a href="tel:+1234567890" className="hover:text-accent transition-colors">+1 (234) 567-890</a>
+              <li className="flex items-center gap-4 text-sm text-white/80 font-medium">
+                <Phone className="w-5 h-5 text-white shrink-0" />
+                <a href="tel:+1234567890" className="hover:text-white transition-colors">+1 (234) 567-890</a>
               </li>
-              <li className="flex items-center gap-3 text-sm text-gray-300">
-                <Mail className="w-5 h-5 text-accent flex-shrink-0" />
-                <a href="mailto:info@wealthyyouth.org" className="hover:text-accent transition-colors">info@wealthyyouth.org</a>
+              <li className="flex items-center gap-4 text-sm text-white/80 font-medium">
+                <Mail className="w-5 h-5 text-white shrink-0" />
+                <a href="mailto:info@wealthyyouth.org" className="hover:text-white transition-colors">info@wealthyyouth.org</a>
               </li>
             </ul>
 
             <div>
-              <h4 className="font-medium mb-3">Newsletter</h4>
+              <h4 className="text-xs uppercase tracking-widest mb-4 font-bold text-white">Newsletter</h4>
               <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
                 <Input
                   type="email"
-                  placeholder="Your email"
+                  placeholder="Email Address"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="bg-white/10 border-white/20 text-white placeholder:text-gray-400"
+                  className="bg-white/10 border-white/20 rounded-full text-white placeholder:text-white/60 focus-visible:ring-1 focus-visible:ring-white h-12 px-6"
                 />
-                <Button type="submit" size="icon" className="bg-accent hover:bg-accent/90 text-secondary flex-shrink-0">
-                  <Send className="w-4 h-4" />
+                <Button type="submit" className="rounded-full bg-white hover:bg-white/90 text-black h-12 w-12 p-0 shrink-0 shadow-sm">
+                  <ArrowRight className="w-5 h-5" />
                 </Button>
               </form>
             </div>
@@ -141,13 +133,13 @@ export default function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-white/10">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-300">
-            <p>&copy; 2026 Wealthy Youth - Grace Nation International. All rights reserved.</p>
-            <div className="flex gap-6">
-              <Link href="/privacy" className="hover:text-accent transition-colors">Privacy Policy</Link>
-              <Link href="/terms" className="hover:text-accent transition-colors">Terms of Service</Link>
+      <div className="border-t border-white/20">
+        <div className="container mx-auto px-4 md:px-8 py-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/60 font-medium uppercase tracking-widest">
+            <p>&copy; {new Date().getFullYear()} Wealthy Youth. All rights reserved.</p>
+            <div className="flex gap-8">
+              <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+              <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
             </div>
           </div>
         </div>

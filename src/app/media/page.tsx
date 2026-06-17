@@ -1,185 +1,157 @@
 "use client";
-import { motion } from 'motion/react';
-import { Card, CardContent } from '../components/ui/card';
-import { Button } from '../components/ui/button';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
-import { Play, Image as ImageIcon, Video, Radio } from 'lucide-react';
 
-export default function Media() {
-  const gallery = [
-    'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80',
-    'https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800&q=80',
-    'https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&q=80',
-    'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=800&q=80',
-    'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&q=80',
-    'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80',
-    'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=800&q=80',
-    'https://images.unsplash.com/photo-1438232992991-995b7058bbb3?w=800&q=80',
-  ];
+import { useState, useEffect } from 'react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/app/components/ui/tabs';
+import { Play, Image as ImageIcon, Video as VideoIcon, Radio, X } from 'lucide-react';
+import { Button } from '@/app/components/ui/button';
+import { getMedia } from '@/lib/actions';
+import { Photo, Video, Livestream } from '@/lib/types';
 
-  const videos = [
-    {
-      id: 1,
-      title: 'Leadership Summit 2026 Highlights',
-      thumbnail: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80',
-      duration: '12:30',
-    },
-    {
-      id: 2,
-      title: 'Worship Night Experience',
-      thumbnail: 'https://images.unsplash.com/photo-1510832842230-87253f48d74f?w=600&q=80',
-      duration: '8:45',
-    },
-    {
-      id: 3,
-      title: 'Community Outreach Day',
-      thumbnail: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600&q=80',
-      duration: '15:20',
-    },
-    {
-      id: 4,
-      title: 'Youth Conference Recap',
-      thumbnail: 'https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?w=600&q=80',
-      duration: '10:15',
-    },
-  ];
+export default function MediaPage() {
+  const [photos, setPhotos] = useState<Photo[]>([]);
+  const [videos, setVideos] = useState<Video[]>([]);
+  const [livestreams, setLivestreams] = useState<Livestream[]>([]);
+  
+  // Lightbox state
+  const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
+
+  useEffect(() => {
+    const fetchMedia = async () => {
+      const media = await getMedia();
+      setPhotos(media.photos);
+      setVideos(media.videos);
+      setLivestreams(media.livestreams);
+    };
+    fetchMedia();
+  }, []);
 
   return (
-    <div className="min-h-screen">
-      {/* Hero */}
-      <section className="relative h-[50vh] flex items-center justify-center overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1920&q=80)' }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-secondary/90 to-primary/90" />
-        </div>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="relative z-10 text-center text-white px-4"
-        >
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">Media Center</h1>
-          <p className="text-xl md:text-2xl max-w-3xl mx-auto">
-            Capturing moments of transformation and celebrating kingdom impact.
+    <div className="min-h-screen bg-[#FAFAFA] pt-32 pb-24">
+      <div className="container mx-auto px-4 max-w-7xl">
+        <div className="mb-16">
+          <h1 className="text-5xl md:text-6xl font-playfair font-bold text-black tracking-tight mb-4">
+            Media <span className="text-primary">Center</span>
+          </h1>
+          <p className="text-muted-foreground text-lg max-w-2xl font-light">
+            Relive our powerful moments, watch transformative messages, and join us live from anywhere in the world.
           </p>
-        </motion.div>
-      </section>
+        </div>
 
-      {/* Content */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4">
-          <Tabs defaultValue="gallery" className="w-full">
-            <TabsList className="grid w-full max-w-2xl mx-auto grid-cols-3 mb-12 h-14">
-              <TabsTrigger value="gallery" className="text-lg">
-                <ImageIcon className="w-5 h-5 mr-2" />
-                Gallery
-              </TabsTrigger>
-              <TabsTrigger value="videos" className="text-lg">
-                <Video className="w-5 h-5 mr-2" />
-                Videos
-              </TabsTrigger>
-              <TabsTrigger value="livestream" className="text-lg">
-                <Radio className="w-5 h-5 mr-2" />
-                Livestream
-              </TabsTrigger>
-            </TabsList>
+        <Tabs defaultValue="photos" className="w-full">
+          <TabsList className="grid w-full max-w-md grid-cols-3 mb-12 bg-white border border-border-gray p-1 rounded-full h-14 shadow-sm">
+            <TabsTrigger value="photos" className="rounded-full data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-md transition-all">
+              <ImageIcon className="w-4 h-4 mr-2" /> Photos
+            </TabsTrigger>
+            <TabsTrigger value="videos" className="rounded-full data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-md transition-all">
+              <VideoIcon className="w-4 h-4 mr-2" /> Videos
+            </TabsTrigger>
+            <TabsTrigger value="livestreams" className="rounded-full data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-md transition-all">
+              <Radio className="w-4 h-4 mr-2" /> Live
+            </TabsTrigger>
+          </TabsList>
 
-            <TabsContent value="gallery">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {gallery.map((image, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.05 }}
-                    className="aspect-square overflow-hidden rounded-lg group cursor-pointer"
-                  >
-                    <div
-                      className="w-full h-full bg-cover bg-center transition-transform group-hover:scale-110"
-                      style={{ backgroundImage: `url(${image})` }}
-                    />
-                  </motion.div>
-                ))}
-              </div>
-            </TabsContent>
-
-            <TabsContent value="videos">
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {videos.map((video, index) => (
-                  <motion.div
-                    key={video.id}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                  >
-                    <Card className="overflow-hidden hover:shadow-xl transition-all group">
-                      <div className="relative">
-                        <div
-                          className="h-56 bg-cover bg-center"
-                          style={{ backgroundImage: `url(${video.thumbnail})` }}
-                        >
-                          <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                            <Button size="lg" className="rounded-full w-16 h-16 bg-accent hover:bg-accent/90 text-secondary">
-                              <Play className="w-8 h-8 ml-1" />
-                            </Button>
-                          </div>
-                          <div className="absolute bottom-2 right-2 bg-black/80 text-white px-2 py-1 rounded text-sm">
-                            {video.duration}
-                          </div>
-                        </div>
-                      </div>
-                      <CardContent className="p-6">
-                        <h3 className="font-bold text-lg">{video.title}</h3>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                ))}
-              </div>
-            </TabsContent>
-
-            <TabsContent value="livestream">
-              <div className="max-w-5xl mx-auto">
-                <Card className="overflow-hidden border-2 border-primary">
-                  <div className="aspect-video bg-gradient-to-br from-secondary to-primary flex items-center justify-center">
-                    <div className="text-center text-white">
-                      <Radio className="w-24 h-24 mx-auto mb-6 animate-pulse" />
-                      <h3 className="text-3xl font-bold mb-4">No Live Stream Currently</h3>
-                      <p className="text-xl mb-6 text-gray-200">
-                        Join us every Sunday at 10:00 AM for our live worship service
-                      </p>
-                      <Button size="lg" className="bg-accent hover:bg-accent/90 text-secondary">
-                        Get Notified
-                      </Button>
+          {/* PHOTOS TAB */}
+          <TabsContent value="photos" className="focus-visible:outline-none">
+            <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+              {photos.map((photo) => (
+                <div 
+                  key={photo.id} 
+                  className="break-inside-avoid rounded-2xl overflow-hidden cursor-pointer group relative shadow-sm hover:shadow-lg transition-all duration-300"
+                  onClick={() => setSelectedPhoto(photo)}
+                >
+                  <img src={photo.url} alt={photo.title} className="w-full h-auto object-cover" />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-end p-6">
+                    <div className="opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                      <span className="text-xs font-bold uppercase tracking-widest text-white/80 block mb-1">{photo.category}</span>
+                      <h4 className="text-white font-playfair font-bold text-xl">{photo.title}</h4>
                     </div>
                   </div>
-                  <CardContent className="p-8">
-                    <h3 className="text-2xl font-bold mb-4">Upcoming Livestreams</h3>
-                    <div className="space-y-4">
-                      <div className="flex items-center justify-between p-4 bg-muted rounded-lg">
-                        <div>
-                          <h4 className="font-bold">Sunday Service</h4>
-                          <p className="text-sm text-muted-foreground">Every Sunday at 10:00 AM</p>
-                        </div>
-                        <Button variant="outline">Set Reminder</Button>
-                      </div>
-                      <div className="flex items-center justify-between p-4 bg-muted rounded-lg">
-                        <div>
-                          <h4 className="font-bold">Wednesday Night Worship</h4>
-                          <p className="text-sm text-muted-foreground">Every Wednesday at 7:00 PM</p>
-                        </div>
-                        <Button variant="outline">Set Reminder</Button>
+                </div>
+              ))}
+            </div>
+          </TabsContent>
+
+          {/* VIDEOS TAB */}
+          <TabsContent value="videos" className="focus-visible:outline-none">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {videos.map((video) => (
+                <div key={video.id} className="group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-border-gray">
+                  <div className="relative aspect-video overflow-hidden">
+                    <img src={video.thumbnail} alt={video.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                    <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                      <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center group-hover:scale-110 group-hover:bg-primary transition-all duration-300">
+                        <Play className="w-6 h-6 text-white ml-1" />
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </TabsContent>
-          </Tabs>
+                  </div>
+                  <div className="p-8">
+                    <span className="text-xs font-bold uppercase tracking-widest text-primary block mb-3">{video.category}</span>
+                    <h3 className="text-xl font-playfair font-bold text-black mb-6 line-clamp-2">{video.title}</h3>
+                    
+                    <Button asChild className="w-full rounded-full bg-primary hover:bg-[#111111] text-white transition-colors h-12 shadow-sm font-bold">
+                      <a href={video.url} target="_blank" rel="noopener noreferrer">
+                        Watch Sermon
+                      </a>
+                    </Button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </TabsContent>
+
+          {/* LIVESTREAMS TAB */}
+          <TabsContent value="livestreams" className="focus-visible:outline-none">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {livestreams.map((live) => (
+                <div key={live.id} className="group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-border-gray">
+                  <div className="relative aspect-video overflow-hidden">
+                    <img src={live.thumbnail} alt={live.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                    <div className="absolute top-4 right-4 bg-red-500 text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full flex items-center gap-2 animate-pulse shadow-md">
+                      <span className="w-2 h-2 bg-white rounded-full"></span> Live Now
+                    </div>
+                    <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                      <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center group-hover:scale-110 group-hover:bg-primary transition-all duration-300">
+                        <Play className="w-6 h-6 text-white ml-1" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="p-8">
+                    <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground block mb-3">{new Date(live.date).toLocaleDateString()}</span>
+                    <h3 className="text-xl font-playfair font-bold text-black mb-6">{live.title}</h3>
+                    
+                    <Button asChild className="w-full rounded-full bg-primary hover:bg-[#111111] text-white transition-colors h-12 shadow-sm font-bold">
+                      <a href={live.url} target="_blank" rel="noopener noreferrer">
+                        Watch Live
+                      </a>
+                    </Button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </TabsContent>
+        </Tabs>
+      </div>
+
+      {/* LIGHTBOX MODAL */}
+      {selectedPhoto && (
+        <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex items-center justify-center p-4">
+          <button 
+            onClick={() => setSelectedPhoto(null)}
+            className="absolute top-8 right-8 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors"
+          >
+            <X className="w-6 h-6" />
+          </button>
+          <img 
+            src={selectedPhoto.url} 
+            alt={selectedPhoto.title}
+            className="max-w-full max-h-[90vh] object-contain rounded-lg"
+          />
+          <div className="absolute bottom-8 left-8">
+            <span className="text-xs font-bold uppercase tracking-widest text-white/60 block mb-1">{selectedPhoto.category}</span>
+            <h4 className="text-white font-playfair font-bold text-2xl">{selectedPhoto.title}</h4>
+          </div>
         </div>
-      </section>
+      )}
     </div>
   );
 }

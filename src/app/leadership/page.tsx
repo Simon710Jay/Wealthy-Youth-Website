@@ -60,36 +60,35 @@ export default function Leadership() {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white">
       {/* Hero */}
-      <section className="relative h-[50vh] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[50vh] flex items-center justify-center overflow-hidden mt-12 bg-black">
         <div
-          className="absolute inset-0 bg-cover bg-center"
+          className="absolute inset-0 bg-cover bg-center opacity-40"
           style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1552664730-d307ca884978?w=1920&q=80)' }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-secondary/90 to-primary/90" />
-        </div>
+        />
+        <div className="absolute inset-0 bg-black/40" />
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="relative z-10 text-center text-white px-4"
+          className="relative z-10 text-center text-white px-4 max-w-4xl"
         >
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">Our Leadership</h1>
-          <p className="text-xl md:text-2xl max-w-3xl mx-auto">
-            Dedicated leaders committed to raising the next generation.
+          <h1 className="font-playfair font-bold text-5xl md:text-7xl mb-6 uppercase tracking-widest drop-shadow-md">Our Leadership</h1>
+          <p className="text-xl md:text-2xl font-light text-white/80 max-w-3xl mx-auto drop-shadow-sm">
+            Dedicated leaders committed to raising the next generation of kingdom influencers.
           </p>
         </motion.div>
       </section>
 
       {/* Pastor Profile */}
-      <section className="py-24 bg-background">
+      <section className="py-24 bg-[#FAFAFA]">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <Card className="max-w-5xl mx-auto overflow-hidden border-2 border-primary">
+            <Card className="max-w-5xl mx-auto overflow-hidden border-none shadow-xl rounded-3xl bg-white">
               <div className="grid md:grid-cols-5 gap-0">
                 <div className="md:col-span-2">
                   <div
@@ -98,18 +97,18 @@ export default function Leadership() {
                   />
                 </div>
                 <CardContent className="md:col-span-3 p-10 flex flex-col justify-center">
-                  <h2 className="text-4xl font-bold mb-2">{pastor.name}</h2>
-                  <p className="text-xl text-primary mb-6">{pastor.title}</p>
-                  <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                  <h2 className="font-playfair font-bold text-4xl mb-2 text-black">{pastor.name}</h2>
+                  <p className="text-xl text-primary font-semibold mb-6">{pastor.title}</p>
+                  <p className="text-muted-foreground font-light leading-relaxed mb-6">
                     {pastor.bio}
                   </p>
 
                   <div className="mb-6">
-                    <h3 className="font-bold text-lg mb-3">Education</h3>
+                    <h3 className="font-bold text-lg mb-3 text-black">Education</h3>
                     <ul className="space-y-2">
                       {pastor.education.map((edu, index) => (
-                        <li key={index} className="text-muted-foreground flex items-start gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 flex-shrink-0" />
+                        <li key={index} className="text-muted-foreground font-light flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
                           {edu}
                         </li>
                       ))}
@@ -119,19 +118,19 @@ export default function Leadership() {
                   <div className="flex gap-4">
                     <a
                       href={`mailto:${pastor.social.email}`}
-                      className="w-10 h-10 rounded-full bg-primary hover:bg-primary/90 flex items-center justify-center text-white transition-colors"
+                      className="w-10 h-10 rounded-full bg-primary hover:bg-primary/90 flex items-center justify-center text-white transition-all hover:-translate-y-0.5 shadow-md"
                     >
                       <Mail className="w-5 h-5" />
                     </a>
                     <a
                       href="#"
-                      className="w-10 h-10 rounded-full bg-primary hover:bg-primary/90 flex items-center justify-center text-white transition-colors"
+                      className="w-10 h-10 rounded-full bg-primary hover:bg-primary/90 flex items-center justify-center text-white transition-all hover:-translate-y-0.5 shadow-md"
                     >
                       <MessageCircle className="w-5 h-5" />
                     </a>
                     <a
                       href="#"
-                      className="w-10 h-10 rounded-full bg-primary hover:bg-primary/90 flex items-center justify-center text-white transition-colors"
+                      className="w-10 h-10 rounded-full bg-primary hover:bg-primary/90 flex items-center justify-center text-white transition-all hover:-translate-y-0.5 shadow-md"
                     >
                       <Briefcase className="w-5 h-5" />
                     </a>
@@ -144,7 +143,7 @@ export default function Leadership() {
       </section>
 
       {/* Leadership Team */}
-      <section className="py-24 bg-muted">
+      <section className="py-24 bg-white border-t border-border/50">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -152,8 +151,8 @@ export default function Leadership() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Leadership Team</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <h2 className="font-playfair font-bold text-4xl md:text-5xl mb-4 text-black">Leadership Team</h2>
+            <p className="text-xl text-muted-foreground font-light max-w-2xl mx-auto">
               Meet the passionate leaders serving in various departments.
             </p>
           </motion.div>
@@ -167,17 +166,17 @@ export default function Leadership() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Card className="overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1 group">
+                <Card className="overflow-hidden border-none shadow-md hover:shadow-xl transition-all duration-300 rounded-3xl bg-white group">
                   <div className="relative">
                     <div
-                      className="h-80 bg-cover bg-center transition-transform group-hover:scale-105"
+                      className="h-80 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
                       style={{ backgroundImage: `url(${leader.image})` }}
                     >
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                      <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                        <h3 className="text-2xl font-bold mb-1">{leader.name}</h3>
-                        <p className="text-accent font-medium mb-2">{leader.title}</p>
-                        <p className="text-sm text-gray-300">{leader.department}</p>
+                      <div className="absolute inset-0 bg-black/40" />
+                      <div className="absolute bottom-0 left-0 right-0 p-6 text-white z-10">
+                        <h3 className="font-playfair font-bold text-2xl mb-1">{leader.name}</h3>
+                        <p className="text-primary font-bold mb-2">{leader.title}</p>
+                        <p className="text-sm text-gray-300 font-light">{leader.department}</p>
                       </div>
                     </div>
                   </div>
@@ -189,7 +188,7 @@ export default function Leadership() {
       </section>
 
       {/* Values Section */}
-      <section className="py-24 bg-background">
+      <section className="py-24 bg-[#FAFAFA] border-t border-border/50">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -197,8 +196,8 @@ export default function Leadership() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Leadership Philosophy</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <h2 className="font-playfair font-bold text-4xl md:text-5xl mb-4 text-black">Leadership Philosophy</h2>
+            <p className="text-xl text-muted-foreground font-light max-w-3xl mx-auto">
               Our leadership is built on biblical principles of servanthood, integrity, and excellence.
               We believe in leading by example and empowering others to discover and fulfill their divine calling.
             </p>
@@ -226,13 +225,13 @@ export default function Leadership() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Card className="h-full text-center border-2 hover:border-primary transition-colors">
-                  <CardContent className="p-8">
-                    <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full mx-auto mb-6 flex items-center justify-center">
-                      <span className="text-3xl font-bold text-white">{index + 1}</span>
+                <Card className="h-full border-none shadow-md hover:shadow-xl transition-all duration-300 rounded-3xl bg-white">
+                  <CardContent className="p-8 text-center">
+                    <div className="w-16 h-16 bg-primary/10 rounded-full mx-auto mb-6 flex items-center justify-center">
+                      <span className="text-2xl font-bold text-primary">{index + 1}</span>
                     </div>
-                    <h3 className="text-2xl font-bold mb-4">{value.title}</h3>
-                    <p className="text-muted-foreground">{value.description}</p>
+                    <h3 className="font-playfair font-bold text-2xl mb-4 text-black">{value.title}</h3>
+                    <p className="text-muted-foreground font-light">{value.description}</p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -243,3 +242,4 @@ export default function Leadership() {
     </div>
   );
 }
+

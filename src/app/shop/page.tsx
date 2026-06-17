@@ -127,7 +127,7 @@ export default function Shop() {
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1920&q=80)' }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-secondary/90 to-primary/90" />
+          <div className="absolute inset-0 bg-black/60" />
         </div>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -148,7 +148,7 @@ export default function Shop() {
             <span className="font-medium">
               {cart.length} {cart.length === 1 ? 'item' : 'items'} in cart
             </span>
-            <Button size="sm" className="bg-secondary hover:bg-secondary/90 text-white">
+            <Button size="sm" className="bg-secondary hover:bg-secondary/90 text-black">
               <ShoppingCart className="w-4 h-4 mr-2" />
               View Cart
             </Button>
@@ -201,11 +201,10 @@ export default function Shop() {
                       className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors shadow-lg"
                     >
                       <Heart
-                        className={`w-5 h-5 ${
-                          wishlist.includes(product.id)
+                        className={`w-5 h-5 ${wishlist.includes(product.id)
                             ? 'fill-red-500 text-red-500'
                             : 'text-gray-600'
-                        }`}
+                          }`}
                       />
                     </button>
                   </div>
@@ -220,11 +219,10 @@ export default function Shop() {
                       {[...Array(5)].map((_, i) => (
                         <Star
                           key={i}
-                          className={`w-4 h-4 ${
-                            i < Math.floor(product.rating)
+                          className={`w-4 h-4 ${i < Math.floor(product.rating)
                               ? 'fill-accent text-accent'
                               : 'text-gray-300'
-                          }`}
+                            }`}
                         />
                       ))}
                       <span className="text-sm text-muted-foreground ml-2">
@@ -241,7 +239,7 @@ export default function Shop() {
                     <Button
                       onClick={() => addToCart(product.id)}
                       disabled={!product.inStock}
-                      className="w-full bg-gradient-to-r from-primary to-accent hover:opacity-90"
+                      className="w-full bg-primary hover:opacity-90"
                     >
                       <ShoppingCart className="w-4 h-4 mr-2" />
                       Add to Cart
@@ -280,7 +278,7 @@ export default function Shop() {
                 transition={{ delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full mx-auto mb-4 flex items-center justify-center">
+                <div className="w-16 h-16 bg-primary rounded-full mx-auto mb-4 flex items-center justify-center">
                   <ShoppingCart className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold mb-2">{benefit.title}</h3>

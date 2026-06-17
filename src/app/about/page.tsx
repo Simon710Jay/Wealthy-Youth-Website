@@ -52,7 +52,7 @@ export default function About() {
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=1920&q=80)' }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-secondary/90 to-primary/90" />
+          <div className="absolute inset-0 bg-black/60" />
         </div>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -137,7 +137,7 @@ export default function About() {
               >
                 <Card className="h-full hover:shadow-xl transition-all hover:-translate-y-1 border-2 hover:border-primary">
                   <CardContent className="p-8">
-                    <div className="w-14 h-14 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center mb-6">
+                    <div className="w-14 h-14 bg-primary rounded-xl flex items-center justify-center mb-6">
                       <value.icon className="w-7 h-7 text-white" />
                     </div>
                     <h3 className="text-xl font-bold mb-3">{value.title}</h3>
@@ -151,7 +151,7 @@ export default function About() {
       </section>
 
       {/* Stats */}
-      <section className="py-24 bg-gradient-to-br from-primary to-secondary text-white">
+      <section className="py-24 bg-primary text-white">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

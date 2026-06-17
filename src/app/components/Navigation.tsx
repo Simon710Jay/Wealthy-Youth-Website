@@ -2,14 +2,13 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Sun, Moon, Mail, Phone, ChevronDown } from 'lucide-react';
+import { Menu, X, Facebook, Instagram, Youtube, BookOpen, Phone } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Button } from './ui/button';
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const pathname = usePathname();
 
   useEffect(() => {
@@ -20,141 +19,137 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' || 'light';
-    setTheme(savedTheme);
-    document.documentElement.classList.toggle('dark', savedTheme === 'dark');
-  }, []);
-
-  const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
-    document.documentElement.classList.toggle('dark', newTheme === 'dark');
-  };
-
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
+    { name: 'Leadership', path: '/leadership' },
     { name: 'Events', path: '/events' },
+    { name: 'Media', path: '/media' },
     { name: 'Sermons', path: '/sermons' },
     { name: 'Community', path: '/community' },
     { name: 'Shop', path: '/shop' },
-    { name: 'Media', path: '/media' },
-    { name: 'Resources', path: '/resources' },
-    { name: 'Contact', path: '/contact' },
+  ];
+
+  const iconLinks = [
+    { name: 'Resources', path: '/resources', icon: BookOpen },
+    { name: 'Contact', path: '/contact', icon: Phone },
+  ];
+
+  const socialLinks = [
+    { name: 'Facebook', icon: Facebook, url: 'https://facebook.com/YOUR_PAGE' },
+    { name: 'Instagram', icon: Instagram, url: 'https://instagram.com/YOUR_PAGE' },
+    { name: 'YouTube', icon: Youtube, url: 'https://youtube.com/@YOUR_CHANNEL' },
   ];
 
   return (
     <>
-      {/* Top Utility Bar */}
-      <div className="bg-[#1A1A1A] text-white py-2 hidden lg:block border-b border-white/10">
-        <div className="container mx-auto px-4 flex justify-between items-center text-sm">
-          <div className="flex items-center gap-6 text-gray-300">
-            <a href="mailto:info@wealthyyouth.org" className="flex items-center gap-2 hover:text-accent transition-colors">
-              <Mail className="w-4 h-4" />
-              info@wealthyyouth.org
-            </a>
-            <a href="tel:+1234567890" className="flex items-center gap-2 hover:text-accent transition-colors">
-              <Phone className="w-4 h-4" />
-              +1 (234) 567-890
-            </a>
-          </div>
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-1.5 mr-4 border-r border-white/20 pr-6">
-              <span className="text-gray-400 italic text-xs">An Expression of</span>
-              <a href="https://gracenation.org" target="_blank" rel="noopener noreferrer" className="text-white hover:text-accent transition-colors font-medium text-sm tracking-wide">
-                Grace Nation International
-              </a>
-            </div>
-            <div className="flex gap-4 text-gray-300 text-xs tracking-wider uppercase">
-              <a href="#" className="hover:text-accent transition-colors">Facebook</a>
-              <a href="#" className="hover:text-accent transition-colors">Instagram</a>
-              <a href="#" className="hover:text-accent transition-colors">YouTube</a>
-              <a href="#" className="hover:text-accent transition-colors">Twitter</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Main Navigation */}
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className={`sticky top-0 z-50 transition-all duration-500 border-b ${
+        className={`sticky top-0 z-50 transition-all duration-300 border-b backdrop-blur-md bg-white/25 ${
           isScrolled
-            ? 'bg-white/70 dark:bg-black/70 backdrop-blur-xl shadow-lg border-black/5 dark:border-white/10'
-            : 'bg-white/40 dark:bg-black/40 backdrop-blur-md border-transparent'
+            ? 'shadow-sm border-border/50'
+            : 'border-transparent'
         }`}
       >
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-20">
-            {/* Logo */}
-            <Link href="/" className="flex items-center gap-4 group">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center shadow-[0_4px_20px_rgba(122,23,55,0.3)] group-hover:shadow-[0_4px_25px_rgba(212,175,55,0.4)] transition-all duration-300">
-                <span className="text-white font-bold text-xl tracking-tighter">WY</span>
-              </div>
-              <div className="hidden md:block">
-                <h1 className="font-bold text-xl text-foreground tracking-tight uppercase">Wealthy Youth</h1>
-                <p className="text-xs text-accent font-medium tracking-widest uppercase mt-0.5">Raising Kingdom Leaders</p>
-              </div>
+        <div className="w-full px-4 md:px-8 lg:px-12">
+          <div className="flex items-center justify-between h-28">
+            
+            {/* Left: Logo */}
+            <Link href="/" className="flex items-center gap-2 group shrink-0">
+              <motion.div 
+                whileHover={{ scale: 1.02 }}
+                className="flex flex-row items-center gap-2"
+              >
+                <span className="font-playfair font-black text-3xl md:text-4xl tracking-tighter text-black leading-none">
+                  WEALTHY
+                </span>
+                <span className="font-playfair font-black text-3xl md:text-4xl tracking-tighter text-primary leading-none">
+                  YOUTH
+                </span>
+              </motion.div>
             </Link>
 
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-2">
+            {/* Center: Desktop Navigation */}
+            <div className="hidden lg:flex items-center gap-8">
               {navLinks.map((link) => (
                 <Link
-                  key={link.path}
+                  key={link.name}
                   href={link.path}
-                  className={`px-4 py-2 rounded-lg transition-all relative group overflow-hidden ${
-                    pathname === link.path
-                      ? 'text-accent font-medium'
-                      : 'text-foreground hover:text-accent'
-                  }`}
+                  className="relative group py-2 text-sm tracking-widest font-semibold uppercase text-black"
                 >
-                  <span className="relative z-10 text-sm tracking-wide uppercase font-semibold">{link.name}</span>
-                  <span className="absolute bottom-0 left-4 right-4 h-[2px] bg-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-                  {pathname === link.path && (
-                    <motion.div
-                      layoutId="activeNav"
-                      className="absolute bottom-0 left-4 right-4 h-[2px] bg-accent shadow-[0_0_10px_rgba(212,175,55,0.8)]"
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                    />
-                  )}
+                  <span className="relative z-10 transition-colors group-hover:text-primary">
+                    {link.name}
+                  </span>
+                  <motion.div
+                    className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"
+                  />
                 </Link>
               ))}
             </div>
 
-            {/* Right Actions */}
-            <div className="flex items-center gap-4">
+            {/* Right: Actions / Socials */}
+            <div className="hidden lg:flex items-center shrink-0">
+              <div className="flex items-center gap-3">
+                {iconLinks.map((link) => (
+                  <Link
+                    key={link.name}
+                    href={link.path}
+                    aria-label={link.name}
+                    className="w-10 h-10 rounded-full bg-white border border-border shadow-sm flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:scale-105 transition-all duration-300"
+                  >
+                    <link.icon className="w-5 h-5" />
+                  </Link>
+                ))}
+                {socialLinks.map((social) => (
+                  <a
+                    key={social.name}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.name}
+                    className="w-10 h-10 rounded-full bg-white border border-border shadow-sm flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:scale-105 transition-all duration-300"
+                  >
+                    <social.icon className="w-5 h-5" />
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Mobile Menu Toggle & Tablet Socials */}
+            <div className="flex items-center lg:hidden gap-4">
+              <div className="hidden md:flex items-center gap-3 mr-2">
+                {iconLinks.map((link) => (
+                  <Link
+                    key={link.name}
+                    href={link.path}
+                    aria-label={link.name}
+                    className="w-10 h-10 rounded-full bg-white border border-border shadow-sm flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:scale-105 transition-all duration-300"
+                  >
+                    <link.icon className="w-5 h-5" />
+                  </Link>
+                ))}
+                {socialLinks.map((social) => (
+                  <a
+                    key={social.name}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.name}
+                    className="w-10 h-10 rounded-full bg-white border border-border shadow-sm flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:scale-105 transition-all duration-300"
+                  >
+                    <social.icon className="w-5 h-5" />
+                  </a>
+                ))}
+              </div>
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={toggleTheme}
-                className="rounded-full hover:bg-black/5 dark:hover:bg-white/10"
-              >
-                {theme === 'light' ? (
-                  <Moon className="w-5 h-5 text-foreground" />
-                ) : (
-                  <Sun className="w-5 h-5" />
-                )}
-              </Button>
-
-              <Button
-                asChild
-                className="hidden md:inline-flex bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity"
-              >
-                <Link href="/membership">Join Us</Link>
-              </Button>
-
-              {/* Mobile Menu Toggle */}
-              <Button
-                variant="ghost"
-                size="icon"
+                className="hover:bg-primary/10 hover:text-primary transition-colors rounded-full"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="lg:hidden"
               >
-                {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                {isMobileMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
               </Button>
             </div>
           </div>
@@ -167,30 +162,48 @@ export default function Navigation() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden border-t border-border bg-background/95 backdrop-blur-md"
+              className="lg:hidden border-t border-border bg-white"
             >
-              <div className="container mx-auto px-4 py-6 space-y-2">
+              <div className="container mx-auto px-4 py-8 flex flex-col space-y-6">
                 {navLinks.map((link) => (
                   <Link
-                    key={link.path}
+                    key={link.name}
                     href={link.path}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className={`block px-4 py-3 rounded-lg transition-colors ${
-                      pathname === link.path
-                        ? 'bg-primary text-white'
-                        : 'hover:bg-muted'
-                    }`}
+                    className="block text-xl font-bold uppercase tracking-widest text-black hover:text-primary transition-colors"
                   >
                     {link.name}
                   </Link>
                 ))}
-                <Link
-                  href="/membership"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block px-4 py-3 rounded-lg bg-gradient-to-r from-primary to-accent text-white text-center font-medium"
-                >
-                  Join Us
-                </Link>
+                <div className="pt-6 mt-6 border-t border-border/50">
+                  <div className="flex md:hidden items-center gap-4 mb-4">
+                    {iconLinks.map((link) => (
+                      <Link
+                        key={link.name}
+                        href={link.path}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        aria-label={link.name}
+                        className="w-10 h-10 rounded-full bg-white border border-border shadow-sm flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:scale-105 transition-all duration-300"
+                      >
+                        <link.icon className="w-5 h-5" />
+                      </Link>
+                    ))}
+                  </div>
+                  <div className="flex md:hidden items-center gap-4">
+                    {socialLinks.map((social) => (
+                      <a
+                        key={social.name}
+                        href={social.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={social.name}
+                        className="w-10 h-10 rounded-full bg-white border border-border shadow-sm flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:scale-105 transition-all duration-300"
+                      >
+                        <social.icon className="w-5 h-5" />
+                      </a>
+                    ))}
+                  </div>
+                </div>
               </div>
             </motion.div>
           )}

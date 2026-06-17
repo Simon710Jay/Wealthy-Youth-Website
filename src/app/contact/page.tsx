@@ -54,7 +54,7 @@ export default function Contact() {
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1920&q=80)' }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-secondary/90 to-primary/90" />
+          <div className="absolute inset-0 bg-black/60" />
         </div>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -82,7 +82,7 @@ export default function Contact() {
               >
                 <Card className="h-full text-center hover:shadow-xl transition-all hover:-translate-y-1">
                   <CardContent className="p-8">
-                    <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-2xl mx-auto mb-6 flex items-center justify-center">
+                    <div className="w-16 h-16 bg-primary rounded-2xl mx-auto mb-6 flex items-center justify-center">
                       <info.icon className="w-8 h-8 text-white" />
                     </div>
                     <h3 className="text-xl font-bold mb-4">{info.title}</h3>
@@ -169,7 +169,7 @@ export default function Contact() {
                       />
                     </div>
 
-                    <Button type="submit" size="lg" className="w-full bg-gradient-to-r from-primary to-accent hover:opacity-90">
+                    <Button type="submit" size="lg" className="w-full bg-primary hover:opacity-90">
                       <Send className="w-5 h-5 mr-2" />
                       Send Message
                     </Button>
@@ -187,7 +187,7 @@ export default function Contact() {
             >
               {/* Map Placeholder */}
               <Card className="overflow-hidden">
-                <div className="h-96 bg-gradient-to-br from-secondary to-primary flex items-center justify-center">
+                <div className="h-96 bg-primary flex items-center justify-center">
                   <div className="text-center text-white">
                     <MapPin className="w-20 h-20 mx-auto mb-4" />
                     <p className="text-xl">Interactive Map</p>
