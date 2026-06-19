@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect, use } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useParams } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { Button } from '@/app/components/ui/button';
 import { Input } from '@/app/components/ui/input';
@@ -28,15 +28,14 @@ const registerSchema = z.object({
 
 type RegisterFormValues = z.infer<typeof registerSchema>;
 
-export default function RegisterPage({ params }: { params: Promise<{ slug: string }> }) {
+export default function RegisterPage() {
   const router = useRouter();
+  const params = useParams();
+  const slug = params?.slug as string;
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  
-  // Unwrap params using React.use for Next.js 15+ compatibility
-  const resolvedParams = use(params);
-  const slug = resolvedParams.slug;
 
   const { register, handleSubmit, formState: { errors } } = useForm<RegisterFormValues>({
     resolver: zodResolver(registerSchema),
@@ -107,7 +106,7 @@ export default function RegisterPage({ params }: { params: Promise<{ slug: strin
           </p>
           <div className="flex gap-4 justify-center">
             <Button asChild className="rounded-full bg-primary hover:bg-[#111111] text-white">
-              <Link href={`/events/${params.slug}`}>Back to Event</Link>
+              <Link href={`/events/${slug}`}>Back to Event</Link>
             </Button>
             <Button asChild variant="outline" className="rounded-full border-border-gray text-black">
               <Link href="/events">View More Events</Link>
@@ -129,7 +128,7 @@ export default function RegisterPage({ params }: { params: Promise<{ slug: strin
   return (
     <div className="min-h-screen bg-[#FAFAFA] py-24 px-4">
       <div className="container mx-auto max-w-2xl">
-        <Link href={`/events/${params.slug}`} className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-black transition-colors mb-8">
+        <Link href={`/events/${slug}`} className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-black transition-colors mb-8">
           <ArrowLeft className="w-4 h-4" /> Back to Event
         </Link>
 
