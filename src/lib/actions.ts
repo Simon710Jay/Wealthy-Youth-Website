@@ -9,7 +9,8 @@ import {
   MembershipRegistration,
   User,
   Order,
-  SupportInquiry
+  SupportInquiry,
+  Leadership
 } from './models';
 
 // ---------------------------
@@ -24,14 +25,16 @@ export async function getDashboardStats() {
     totalEventRegistrations,
     totalMedia,
     totalSermons,
-    totalOrders
+    totalOrders,
+    totalLeadershipMembers
   ] = await Promise.all([
     User.countDocuments({ role: 'member' }),
     EventModel.countDocuments(),
     EventRegistration.countDocuments(),
     Media.countDocuments(),
     Sermon.countDocuments(),
-    Order?.countDocuments() || 0
+    Order?.countDocuments() || 0,
+    Leadership.countDocuments()
   ]);
 
   return {
@@ -40,7 +43,8 @@ export async function getDashboardStats() {
     totalEventRegistrations,
     totalMedia,
     totalSermons,
-    totalOrders
+    totalOrders,
+    totalLeadershipMembers
   };
 }
 
@@ -248,5 +252,43 @@ export async function markInquiryContacted(id: string, contacted: boolean) {
 export async function deleteSupportInquiry(id: string) {
   await connectMongo();
   await SupportInquiry.findByIdAndDelete(id);
+  return { success: true };
+}
+
+// ---------------------------
+// LEADERSHIP
+// ---------------------------
+export async function getLeadershipMembers() {
+  await connectMongo();
+  const members = await Leadership.find()
+    .sort({ category: 1, displayOrder: 1, createdAt: -1 })
+    .lean();
+  return JSON.parse(JSON.stringify(members));
+}
+
+export async function getPublicLeadership() {
+  await connectMongo();
+  const members = await Leadership.find({ activeStatus: true })
+    .sort({ category: 1, displayOrder: 1, createdAt: -1 })
+    .lean();
+  return JSON.parse(JSON.stringify(members));
+}
+
+export async function createLeadershipMember(data: any) {
+  await connectMongo();
+  const newMember = await Leadership.create(data);
+  return JSON.parse(JSON.stringify(newMember));
+}
+
+export async function updateLeadershipMember(id: string, data: any) {
+  await connectMongo();
+  data.updatedAt = new Date();
+  const updatedMember = await Leadership.findByIdAndUpdate(id, data, { new: true });
+  return JSON.parse(JSON.stringify(updatedMember));
+}
+
+export async function deleteLeadershipMember(id: string) {
+  await connectMongo();
+  await Leadership.findByIdAndDelete(id);
   return { success: true };
 }

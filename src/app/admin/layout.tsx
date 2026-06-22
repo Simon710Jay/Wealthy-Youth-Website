@@ -31,16 +31,15 @@ export default async function AdminLayout({
 
   const navigation = [
     { name: 'Dashboard', href: '/admin', icon: LayoutDashboard, roles: ['super_admin', 'events_admin', 'media_admin', 'sermons_admin', 'shop_admin'] },
+    { name: 'Members', href: '/admin/members', icon: Users, roles: ['super_admin'] },
     { name: 'Events', href: '/admin/events', icon: Calendar, roles: ['super_admin', 'events_admin'] },
-    { name: 'Registrations', href: '/admin/registrations', icon: Users, roles: ['super_admin', 'events_admin'] },
+    { name: 'Event Registrations', href: '/admin/registrations', icon: Users, roles: ['super_admin', 'events_admin'] },
     { name: 'Media Gallery', href: '/admin/media', icon: ImageIcon, roles: ['super_admin', 'media_admin'] },
+    { name: 'Leadership', href: '/admin/leadership', icon: Users, roles: ['super_admin'] },
     { name: 'Sermons', href: '/admin/sermons', icon: Video, roles: ['super_admin', 'sermons_admin'] },
     { name: 'Shop Products', href: '/admin/shop', icon: ShoppingCart, roles: ['super_admin', 'shop_admin'] },
     { name: 'Orders', href: '/admin/orders', icon: CreditCard, roles: ['super_admin', 'shop_admin'] },
-    { name: 'Users', href: '/admin/users', icon: Users, roles: ['super_admin'] },
-    { name: 'Testimonials', href: '/admin/testimonials', icon: MessageSquare, roles: ['super_admin'] },
     { name: 'Support Inquiries', href: '/admin/support-inquiries', icon: HeartHandshake, roles: ['super_admin'] },
-    { name: 'Settings', href: '/admin/settings', icon: Settings, roles: ['super_admin'] },
   ];
 
   const allowedNav = navigation.filter(item => item.roles.includes(role || ''));

@@ -10,6 +10,11 @@ export interface IUser extends Document {
   password?: string;
   role: 'super_admin' | 'events_admin' | 'media_admin' | 'sermons_admin' | 'shop_admin' | 'member';
   profileImage?: string;
+  whatsappNumber?: string;
+  gender?: string;
+  country?: string;
+  state?: string;
+  accountStatus?: string;
   createdAt: Date;
 }
 
@@ -24,6 +29,11 @@ const UserSchema = new Schema<IUser>({
     default: 'member'
   },
   profileImage: { type: String },
+  whatsappNumber: { type: String },
+  gender: { type: String },
+  country: { type: String },
+  state: { type: String },
+  accountStatus: { type: String, enum: ['active', 'suspended'], default: 'active' },
   createdAt: { type: Date, default: Date.now },
 });
 
@@ -307,3 +317,56 @@ const SupportInquirySchema = new Schema<ISupportInquiry>({
 });
 
 export const SupportInquiry = mongoose.models.SupportInquiry || mongoose.model<ISupportInquiry>('SupportInquiry', SupportInquirySchema);
+
+// ----------------------
+// Leadership Model
+// ----------------------
+export interface ILeadership extends Document {
+  fullName: string;
+  position: string;
+  biography: string;
+  profilePhoto?: {
+    imageUrl: string;
+    publicId: string;
+  };
+  socialLinks?: {
+    facebook?: string;
+    instagram?: string;
+    youtube?: string;
+    twitter?: string;
+    linkedin?: string;
+  };
+  displayOrder: number;
+  activeStatus: boolean;
+  category: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+const LeadershipSchema = new Schema<ILeadership>({
+  fullName: { type: String, required: true },
+  position: { type: String, required: true },
+  biography: { type: String, required: true },
+  profilePhoto: {
+    imageUrl: { type: String },
+    publicId: { type: String }
+  },
+  socialLinks: {
+    facebook: { type: String },
+    instagram: { type: String },
+    youtube: { type: String },
+    twitter: { type: String },
+    linkedin: { type: String }
+  },
+  displayOrder: { type: Number, default: 0 },
+  activeStatus: { type: Boolean, default: true },
+  category: { 
+    type: String, 
+    enum: ['Lead Pastor', 'Executive Leadership', 'Leadership Team'],
+    required: true
+  },
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
+});
+
+export const Leadership = mongoose.models.Leadership || mongoose.model<ILeadership>('Leadership', LeadershipSchema);

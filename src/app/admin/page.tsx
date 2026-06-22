@@ -16,6 +16,30 @@ export default async function AdminDashboard() {
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <Card className="rounded-2xl border-border-gray shadow-sm">
           <CardContent className="p-6 flex items-center gap-4">
+            <div className="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center flex-shrink-0 text-blue-600">
+              <Users className="w-5 h-5" />
+            </div>
+            <div>
+              <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Members</p>
+              <p className="text-2xl font-bold text-black">{stats.totalMembers}</p>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="rounded-2xl border-border-gray shadow-sm">
+          <CardContent className="p-6 flex items-center gap-4">
+            <div className="w-12 h-12 rounded-full bg-green-500/10 flex items-center justify-center flex-shrink-0 text-green-600">
+              <Users className="w-5 h-5" />
+            </div>
+            <div>
+              <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Registrations</p>
+              <p className="text-2xl font-bold text-black">{stats.totalEventRegistrations}</p>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="rounded-2xl border-border-gray shadow-sm">
+          <CardContent className="p-6 flex items-center gap-4">
             <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 text-primary">
               <Calendar className="w-5 h-5" />
             </div>
@@ -32,7 +56,7 @@ export default async function AdminDashboard() {
               <ImageIcon className="w-5 h-5" />
             </div>
             <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Media</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Media Uploads</p>
               <p className="text-2xl font-bold text-black">{stats.totalMedia}</p>
             </div>
           </CardContent>
@@ -52,12 +76,24 @@ export default async function AdminDashboard() {
 
         <Card className="rounded-2xl border-border-gray shadow-sm">
           <CardContent className="p-6 flex items-center gap-4">
-            <div className="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center flex-shrink-0 text-blue-600">
+            <div className="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center flex-shrink-0 text-purple-600">
               <Users className="w-5 h-5" />
             </div>
             <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Members</p>
-              <p className="text-2xl font-bold text-black">{stats.totalMembers}</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Leadership</p>
+              <p className="text-2xl font-bold text-black">{stats.totalLeadershipMembers}</p>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="rounded-2xl border-border-gray shadow-sm">
+          <CardContent className="p-6 flex items-center gap-4">
+            <div className="w-12 h-12 rounded-full bg-orange-500/10 flex items-center justify-center flex-shrink-0 text-orange-600">
+              <ShoppingBag className="w-5 h-5" />
+            </div>
+            <div>
+              <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Shop Orders</p>
+              <p className="text-2xl font-bold text-black">{stats.totalOrders}</p>
             </div>
           </CardContent>
         </Card>

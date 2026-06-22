@@ -20,6 +20,13 @@ export default function MembersClient({ members }: { members: any[] }) {
           <p className="text-muted-foreground">View and manage platform members.</p>
         </div>
       </div>
+      
+      <div className="bg-primary/10 border border-primary/20 rounded-2xl p-6 mb-8 flex items-center justify-between">
+        <div>
+          <h2 className="text-sm font-bold uppercase tracking-widest text-primary mb-1">Total Members</h2>
+          <p className="text-3xl font-bold text-black">{members.length}</p>
+        </div>
+      </div>
 
       <div className="bg-white rounded-3xl border border-border-gray shadow-sm overflow-hidden p-6">
         <div className="flex justify-between items-center mb-6">
@@ -35,45 +42,63 @@ export default function MembersClient({ members }: { members: any[] }) {
           </div>
         </div>
 
-        <table className="w-full text-left">
-          <thead className="bg-[#FAFAFA] border-b border-border-gray text-xs uppercase tracking-widest text-muted-foreground">
-            <tr>
-              <th className="px-6 py-4 font-bold">Name</th>
-              <th className="px-6 py-4 font-bold">Email</th>
-              <th className="px-6 py-4 font-bold">Role</th>
-              <th className="px-6 py-4 font-bold">Joined</th>
-              <th className="px-6 py-4 font-bold text-right">Actions</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-border-gray text-sm">
-            {filteredMembers.map((member: any) => (
-              <tr key={member._id} className="hover:bg-black/5 transition-colors">
-                <td className="px-6 py-4 font-bold text-black">
-                  {member.firstName} {member.lastName}
-                </td>
-                <td className="px-6 py-4 text-muted-foreground">{member.email}</td>
-                <td className="px-6 py-4">
-                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                    {member.role || 'Member'}
-                  </span>
-                </td>
-                <td className="px-6 py-4 text-muted-foreground">
-                  {new Date(member.createdAt).toLocaleDateString()}
-                </td>
-                <td className="px-6 py-4 text-right">
-                  <Button variant="outline" size="sm" className="rounded-full">View Details</Button>
-                </td>
-              </tr>
-            ))}
-            {filteredMembers.length === 0 && (
+        <div className="overflow-x-auto">
+          <table className="w-full text-left min-w-[1000px]">
+            <thead className="bg-[#FAFAFA] border-b border-border-gray text-xs uppercase tracking-widest text-muted-foreground">
               <tr>
-                <td colSpan={5} className="px-6 py-8 text-center text-muted-foreground">
-                  No members found.
-                </td>
+                <th className="px-6 py-4 font-bold">Photo</th>
+                <th className="px-6 py-4 font-bold">Name</th>
+                <th className="px-6 py-4 font-bold">Contact</th>
+                <th className="px-6 py-4 font-bold">Demographics</th>
+                <th className="px-6 py-4 font-bold">Status</th>
+                <th className="px-6 py-4 font-bold">Registered</th>
               </tr>
-            )}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="divide-y divide-border-gray text-sm">
+              {filteredMembers.map((member: any) => (
+                <tr key={member._id} className="hover:bg-black/5 transition-colors">
+                  <td className="px-6 py-4">
+                    <div className="w-10 h-10 rounded-full bg-muted overflow-hidden">
+                      <img src={member.profileImage || `https://ui-avatars.com/api/?name=${member.firstName}+${member.lastName}&background=random`} alt={member.firstName} className="w-full h-full object-cover" />
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 font-bold text-black">
+                    {member.firstName} {member.lastName}
+                  </td>
+                  <td className="px-6 py-4">
+                    <div className="text-muted-foreground">{member.email}</div>
+                    <div className="text-xs text-muted-foreground mt-1">{member.whatsappNumber || 'N/A'}</div>
+                  </td>
+                  <td className="px-6 py-4">
+                    <div className="text-muted-foreground capitalize">{member.gender || 'N/A'}</div>
+                    <div className="text-xs text-muted-foreground mt-1">{member.state ? `${member.state}, ` : ''}{member.country || 'N/A'}</div>
+                  </td>
+                  <td className="px-6 py-4">
+                    {member.accountStatus === 'suspended' ? (
+                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                        Suspended
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                        Active
+                      </span>
+                    )}
+                  </td>
+                  <td className="px-6 py-4 text-muted-foreground">
+                    {new Date(member.createdAt).toLocaleDateString()}
+                  </td>
+                </tr>
+              ))}
+              {filteredMembers.length === 0 && (
+                <tr>
+                  <td colSpan={6} className="px-6 py-8 text-center text-muted-foreground">
+                    No members found.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
