@@ -12,7 +12,8 @@ import {
   MessageSquare,
   Settings,
   LogOut,
-  CreditCard
+  CreditCard,
+  HeartHandshake
 } from 'lucide-react';
 
 export default async function AdminLayout({
@@ -38,6 +39,7 @@ export default async function AdminLayout({
     { name: 'Orders', href: '/admin/orders', icon: CreditCard, roles: ['super_admin', 'shop_admin'] },
     { name: 'Users', href: '/admin/users', icon: Users, roles: ['super_admin'] },
     { name: 'Testimonials', href: '/admin/testimonials', icon: MessageSquare, roles: ['super_admin'] },
+    { name: 'Support Inquiries', href: '/admin/support-inquiries', icon: HeartHandshake, roles: ['super_admin'] },
     { name: 'Settings', href: '/admin/settings', icon: Settings, roles: ['super_admin'] },
   ];
 

@@ -280,3 +280,30 @@ const MembershipRegistrationSchema = new Schema<IMembershipRegistration>({
 });
 
 export const MembershipRegistration = mongoose.models.MembershipRegistration || mongoose.model<IMembershipRegistration>('MembershipRegistration', MembershipRegistrationSchema);
+
+// ----------------------
+// Support Inquiry Model
+// ----------------------
+export interface ISupportInquiry extends Document {
+  fullName: string;
+  email: string;
+  phoneNumber: string;
+  organization?: string;
+  sponsorshipType: string;
+  message: string;
+  contacted: boolean;
+  createdAt: Date;
+}
+
+const SupportInquirySchema = new Schema<ISupportInquiry>({
+  fullName: { type: String, required: true },
+  email: { type: String, required: true },
+  phoneNumber: { type: String, required: true },
+  organization: { type: String },
+  sponsorshipType: { type: String, required: true },
+  message: { type: String, required: true },
+  contacted: { type: Boolean, default: false },
+  createdAt: { type: Date, default: Date.now },
+});
+
+export const SupportInquiry = mongoose.models.SupportInquiry || mongoose.model<ISupportInquiry>('SupportInquiry', SupportInquirySchema);

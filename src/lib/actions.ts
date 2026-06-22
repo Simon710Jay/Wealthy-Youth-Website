@@ -8,7 +8,8 @@ import {
   EventRegistration,
   MembershipRegistration,
   User,
-  Order
+  Order,
+  SupportInquiry
 } from './models';
 
 // ---------------------------
@@ -78,7 +79,8 @@ export async function deleteEvent(id: string) {
 
 export async function getEventBySlug(slug: string) {
   await connectMongo();
-  const event = await EventModel.findOne({ slug, published: true }).lean();
+  const decodedSlug = decodeURIComponent(slug);
+  const event = await EventModel.findOne({ slug: decodedSlug, published: true }).lean();
   if (!event) return null;
   return JSON.parse(JSON.stringify(event));
 }
@@ -218,4 +220,33 @@ export async function getMediaForEvent(eventId: string) {
     .sort({ createdAt: -1 })
     .lean();
   return JSON.parse(JSON.stringify(media));
+}
+
+// ---------------------------
+// SUPPORT INQUIRIES
+// ---------------------------
+export async function createSupportInquiry(data: any) {
+  await connectMongo();
+  const inquiry = await SupportInquiry.create(data);
+  return JSON.parse(JSON.stringify(inquiry));
+}
+
+export async function getSupportInquiries() {
+  await connectMongo();
+  const inquiries = await SupportInquiry.find()
+    .sort({ createdAt: -1 })
+    .lean();
+  return JSON.parse(JSON.stringify(inquiries));
+}
+
+export async function markInquiryContacted(id: string, contacted: boolean) {
+  await connectMongo();
+  const updated = await SupportInquiry.findByIdAndUpdate(id, { contacted }, { new: true });
+  return JSON.parse(JSON.stringify(updated));
+}
+
+export async function deleteSupportInquiry(id: string) {
+  await connectMongo();
+  await SupportInquiry.findByIdAndDelete(id);
+  return { success: true };
 }

@@ -338,43 +338,6 @@ export default function HomeClient({ events, media }: { events: any[], media: an
         </div>
       </section>
 
-      {/* Why Wealthy Youth (Features) */}
-      <section className="py-32 bg-white">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-20"
-          >
-            <h2 className="text-5xl font-playfair font-bold mb-6 text-black">Why Wealthy Youth</h2>
-            <p className="text-muted-foreground text-xl font-light max-w-2xl mx-auto">Pillars of our movement designed to elevate your life and calling.</p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {pillars.map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-              >
-                <Card className="border-none shadow-md hover:shadow-xl transition-all duration-300 bg-white rounded-3xl overflow-hidden group">
-                  <CardContent className="p-10 text-center relative z-10">
-                    <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-8 mx-auto group-hover:bg-primary group-hover:text-white transition-colors duration-300">
-                      <item.icon className="w-8 h-8 text-primary group-hover:text-white transition-colors duration-300" />
-                    </div>
-                    <h3 className="font-playfair font-bold text-2xl mb-4 text-black">{item.title}</h3>
-                    <p className="text-muted-foreground font-light leading-relaxed">{item.desc}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Upcoming Events */}
       <section id="events" className="py-32 bg-[#FAFAFA] border-t border-b border-border/50">
         <div className="container mx-auto px-4 max-w-6xl">
@@ -441,6 +404,99 @@ export default function HomeClient({ events, media }: { events: any[], media: an
               </div>
             )}
           </div>
+        </div>
+      </section>
+
+      {/* Why Wealthy Youth (Features) */}
+      <section className="py-32 bg-white">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-20"
+          >
+            <h2 className="text-5xl font-playfair font-bold mb-6 text-black">Why Wealthy Youth</h2>
+            <p className="text-muted-foreground text-xl font-light max-w-2xl mx-auto">Pillars of our movement designed to elevate your life and calling.</p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {pillars.map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+              >
+                <Card className="border-none shadow-md hover:shadow-xl transition-all duration-300 bg-white rounded-3xl overflow-hidden group">
+                  <CardContent className="p-10 text-center relative z-10">
+                    <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-8 mx-auto group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+                      <item.icon className="w-8 h-8 text-primary group-hover:text-white transition-colors duration-300" />
+                    </div>
+                    <h3 className="font-playfair font-bold text-2xl mb-4 text-black">{item.title}</h3>
+                    <p className="text-muted-foreground font-light leading-relaxed">{item.desc}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Sponsor & Support */}
+      <section className="py-32 bg-white">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-[#6B102E] rounded-[32px] overflow-hidden shadow-2xl relative"
+          >
+            <div className="absolute inset-0 bg-black/20 z-10" />
+            <img 
+              src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1920&q=80" 
+              alt="Sponsor and Support" 
+              className="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-overlay"
+            />
+            
+            <div className="relative z-20 p-10 md:p-16 lg:p-24 flex flex-col items-center text-center">
+              <h2 className="text-5xl md:text-6xl font-playfair font-bold text-white mb-6 leading-tight">
+                Sponsor A Generation.<br />Empower Future Leaders.
+              </h2>
+              <p className="text-lg md:text-xl text-white/90 font-light max-w-3xl mb-16 leading-relaxed">
+                Your support helps us reach, disciple, equip, and empower young people to become leaders of influence, purpose, excellence, and kingdom impact.
+              </p>
+              
+              <div className="grid md:grid-cols-3 gap-6 w-full mb-20">
+                {[
+                  { title: "Partner With Us", desc: "Become a strategic partner in advancing youth development and kingdom impact." },
+                  { title: "Sponsor An Event", desc: "Support conferences, leadership summits, outreach programs, and community initiatives." },
+                  { title: "Give A Donation", desc: "Contribute financially to help sustain and expand Wealthy Youth programs." }
+                ].map((card, i) => (
+                  <div key={i} className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 text-left hover:bg-white/20 transition-all">
+                    <h3 className="text-white font-playfair font-bold text-2xl mb-4">{card.title}</h3>
+                    <p className="text-white/80 text-sm leading-relaxed">{card.desc}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="bg-white rounded-[32px] p-8 md:p-12 w-full max-w-4xl text-center shadow-xl">
+                <h3 className="text-3xl font-playfair font-bold text-black mb-4">Interested In Sponsoring Wealthy Youth?</h3>
+                <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
+                  Our leadership team would be delighted to discuss partnership opportunities, sponsorship packages, donations, and collaborative initiatives.
+                </p>
+                <div className="flex flex-wrap justify-center gap-4">
+                  <Button asChild size="lg" className="bg-[#6B102E] hover:bg-[#500c22] text-white rounded-full px-10 h-14 font-bold tracking-widest uppercase text-xs shadow-md">
+                    <Link href="/support">Become A Sponsor</Link>
+                  </Button>
+                  <Button asChild size="lg" variant="outline" className="border-border-gray text-black rounded-full px-10 h-14 font-bold tracking-widest uppercase text-xs hover:bg-[#FAFAFA]">
+                    <a href="mailto:partnerships@wealthyyouth.org">Contact Leadership</a>
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
