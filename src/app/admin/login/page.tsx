@@ -51,7 +51,7 @@ export default function AdminLogin() {
           <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
             <Lock className="w-6 h-6 text-primary" />
           </div>
-          <CardTitle className="text-2xl font-bold font-playfair tracking-tight">Admin Portal</CardTitle>
+          <CardTitle className="text-2xl font-bold tracking-tight">Admin Portal</CardTitle>
           <CardDescription>
             Enter your credentials to access the CMS
           </CardDescription>

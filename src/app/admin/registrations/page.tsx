@@ -18,7 +18,7 @@ export default async function RegistrationsPage() {
     return (
       <div className="flex items-center justify-center h-64 text-center">
         <div>
-          <h2 className="text-2xl font-playfair font-bold text-red-600 mb-2">Access Denied</h2>
+          <h2 className="text-2xl font-bold text-red-600 mb-2">Access Denied</h2>
           <p className="text-muted-foreground">You do not have permission to view event registrations.</p>
         </div>
       </div>
@@ -30,7 +30,7 @@ export default async function RegistrationsPage() {
   return (
     <div>
       <div className="mb-8">
-        <h1 className="text-3xl font-playfair font-bold text-black mb-2">Event Registrations</h1>
+        <h1 className="text-3xl font-bold text-black mb-2">Event Registrations</h1>
         <p className="text-muted-foreground">Manage and export event registrations.</p>
       </div>
 

@@ -200,7 +200,7 @@ export default function MediaClient({ initialMedia, events }: { initialMedia: an
     <div className="space-y-8">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-playfair font-bold text-black mb-2">Media Gallery</h1>
+          <h1 className="text-3xl font-bold text-black mb-2">Media Gallery</h1>
           <p className="text-muted-foreground">Manage platform photos and videos.</p>
         </div>
         <Button 
@@ -301,7 +301,7 @@ export default function MediaClient({ initialMedia, events }: { initialMedia: an
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 py-12">
           <div className="bg-white rounded-3xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative">
             <div className="flex justify-between items-center mb-6 sticky top-0 bg-white z-10 pb-4 border-b border-border-gray">
-              <h2 className="text-2xl font-playfair font-bold">{editingMedia ? 'Edit Media' : `Upload ${activeTab === 'image' ? 'Photos' : 'Videos'}`}</h2>
+              <h2 className="text-2xl font-bold">{editingMedia ? 'Edit Media' : `Upload ${activeTab === 'image' ? 'Photos' : 'Videos'}`}</h2>
               <button onClick={() => setIsModalOpen(false)} className="text-muted-foreground hover:text-black">
                 <X className="w-6 h-6" />
               </button>

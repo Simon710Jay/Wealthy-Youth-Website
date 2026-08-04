@@ -11,7 +11,7 @@ export default async function EventsPage() {
     <div className="min-h-screen bg-[#FAFAFA] pt-32 pb-24">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="mb-16">
-          <h1 className="text-5xl md:text-6xl font-playfair font-bold text-black tracking-tight mb-4">
+          <h1 className="text-5xl md:text-6xl font-bold text-black tracking-tight mb-4">
             Upcoming <span className="text-primary">Events</span>
           </h1>
           <p className="text-muted-foreground text-lg max-w-2xl font-light">
@@ -33,7 +33,7 @@ export default async function EventsPage() {
                 </div>
               </div>
               <CardContent className="p-8">
-                <h3 className="text-2xl font-playfair font-bold text-black mb-4 group-hover:text-primary transition-colors">
+                <h3 className="text-2xl font-bold text-black mb-4 group-hover:text-primary transition-colors">
                   {event.title}
                 </h3>
                 <div className="space-y-3 mb-8">

@@ -175,7 +175,7 @@ export default function AdminEventsClient({ initialEvents, regCounts }: { initia
     <div className="space-y-8">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-playfair font-bold text-black mb-2">Events Management</h1>
+          <h1 className="text-3xl font-bold text-black mb-2">Events Management</h1>
           <p className="text-muted-foreground">Create and manage platform events.</p>
         </div>
         <Button 
@@ -265,7 +265,7 @@ export default function AdminEventsClient({ initialEvents, regCounts }: { initia
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 py-12">
           <div className="bg-white rounded-3xl p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto relative shadow-2xl">
             <div className="flex justify-between items-center mb-6 sticky top-0 bg-white z-10 pb-4 border-b border-border-gray">
-              <h2 className="text-2xl font-playfair font-bold">{editingEvent ? 'Edit Event' : 'Create New Event'}</h2>
+              <h2 className="text-2xl font-bold">{editingEvent ? 'Edit Event' : 'Create New Event'}</h2>
               <button onClick={() => setIsModalOpen(false)} className="text-muted-foreground hover:text-black">
                 <X className="w-6 h-6" />
               </button>

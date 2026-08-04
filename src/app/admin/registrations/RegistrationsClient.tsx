@@ -97,7 +97,7 @@ export default function RegistrationsClient({
               <X className="w-5 h-5 text-gray-500" />
             </button>
             
-            <h2 className="text-2xl font-playfair font-bold text-black mb-6 border-b pb-4">Registration Details</h2>
+            <h2 className="text-2xl font-bold text-black mb-6 border-b pb-4">Registration Details</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>

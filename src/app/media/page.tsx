@@ -29,7 +29,7 @@ export default function MediaPage() {
     <div className="min-h-screen bg-[#FAFAFA] pt-32 pb-24">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="mb-16">
-          <h1 className="text-5xl md:text-6xl font-playfair font-bold text-black tracking-tight mb-4">
+          <h1 className="text-5xl md:text-6xl font-bold text-black tracking-tight mb-4">
             Media <span className="text-primary">Center</span>
           </h1>
           <p className="text-muted-foreground text-lg max-w-2xl font-light">
@@ -63,7 +63,7 @@ export default function MediaPage() {
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-end p-6">
                     <div className="opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
                       <span className="text-xs font-bold uppercase tracking-widest text-white/80 block mb-1">{photo.category}</span>
-                      <h4 className="text-white font-playfair font-bold text-xl">{photo.title}</h4>
+                      <h4 className="text-white font-bold text-xl">{photo.title}</h4>
                     </div>
                   </div>
                 </div>
@@ -86,7 +86,7 @@ export default function MediaPage() {
                   </div>
                   <div className="p-8">
                     <span className="text-xs font-bold uppercase tracking-widest text-primary block mb-3">{video.category}</span>
-                    <h3 className="text-xl font-playfair font-bold text-black mb-6 line-clamp-2">{video.title}</h3>
+                    <h3 className="text-xl font-bold text-black mb-6 line-clamp-2">{video.title}</h3>
                     
                     <Button asChild className="w-full rounded-full bg-primary hover:bg-[#111111] text-white transition-colors h-12 shadow-sm font-bold">
                       <a href={video.url} target="_blank" rel="noopener noreferrer">
@@ -117,7 +117,7 @@ export default function MediaPage() {
                   </div>
                   <div className="p-8">
                     <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground block mb-3">{new Date(live.date).toLocaleDateString()}</span>
-                    <h3 className="text-xl font-playfair font-bold text-black mb-6">{live.title}</h3>
+                    <h3 className="text-xl font-bold text-black mb-6">{live.title}</h3>
                     
                     <Button asChild className="w-full rounded-full bg-primary hover:bg-[#111111] text-white transition-colors h-12 shadow-sm font-bold">
                       <a href={live.url} target="_blank" rel="noopener noreferrer">
@@ -148,7 +148,7 @@ export default function MediaPage() {
           />
           <div className="absolute bottom-8 left-8">
             <span className="text-xs font-bold uppercase tracking-widest text-white/60 block mb-1">{selectedPhoto.category}</span>
-            <h4 className="text-white font-playfair font-bold text-2xl">{selectedPhoto.title}</h4>
+            <h4 className="text-white font-bold text-2xl">{selectedPhoto.title}</h4>
           </div>
         </div>
       )}

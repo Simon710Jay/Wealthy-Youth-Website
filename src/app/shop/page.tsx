@@ -148,7 +148,7 @@ export default function Shop() {
             <span className="font-medium">
               {cart.length} {cart.length === 1 ? 'item' : 'items'} in cart
             </span>
-            <Button size="sm" className="bg-secondary hover:bg-secondary/90 text-black">
+            <Button size="sm" className="bg-primary text-white rounded-full shadow-md transition-all duration-300 hover:bg-primary/90 hover:-translate-y-0.5 hover:shadow-lg hover:text-white active:scale-95 cursor-pointer">
               <ShoppingCart className="w-4 h-4 mr-2" />
               View Cart
             </Button>
@@ -164,9 +164,12 @@ export default function Shop() {
             {categories.map((category) => (
               <Button
                 key={category}
-                variant={selectedCategory === category ? 'default' : 'outline'}
                 onClick={() => setSelectedCategory(category)}
-                className={selectedCategory === category ? 'bg-primary' : ''}
+                className={`rounded-full shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:text-white active:scale-95 cursor-pointer ${
+                  selectedCategory === category
+                    ? 'bg-primary text-white hover:bg-primary/90'
+                    : 'bg-primary/70 text-white hover:bg-primary/80'
+                }`}
               >
                 {category.charAt(0).toUpperCase() + category.slice(1)}
               </Button>
@@ -198,12 +201,12 @@ export default function Shop() {
                     </div>
                     <button
                       onClick={() => toggleWishlist(product.id)}
-                      className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors shadow-lg"
+                      className="absolute top-4 right-4 w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center shadow-md transition-all duration-300 hover:bg-primary/90 hover:-translate-y-0.5 hover:shadow-lg active:scale-95 cursor-pointer"
                     >
                       <Heart
                         className={`w-5 h-5 ${wishlist.includes(product.id)
-                            ? 'fill-red-500 text-red-500'
-                            : 'text-gray-600'
+                            ? 'fill-white'
+                            : 'text-white'
                           }`}
                       />
                     </button>
@@ -239,7 +242,7 @@ export default function Shop() {
                     <Button
                       onClick={() => addToCart(product.id)}
                       disabled={!product.inStock}
-                      className="w-full bg-primary hover:opacity-90"
+                      className="w-full bg-primary text-white rounded-full shadow-md transition-all duration-300 hover:bg-primary/90 hover:-translate-y-0.5 hover:shadow-lg hover:text-white active:scale-95 cursor-pointer"
                     >
                       <ShoppingCart className="w-4 h-4 mr-2" />
                       Add to Cart

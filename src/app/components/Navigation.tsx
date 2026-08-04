@@ -62,10 +62,10 @@ export default function Navigation() {
                 whileHover={{ scale: 1.02 }}
                 className="flex flex-row items-center gap-2"
               >
-                <span className="font-playfair font-black text-3xl md:text-4xl tracking-tighter text-black leading-none">
+                <span className="font-black text-3xl md:text-4xl tracking-tighter text-black leading-none">
                   WEALTHY
                 </span>
-                <span className="font-playfair font-black text-3xl md:text-4xl tracking-tighter text-primary leading-none">
+                <span className="font-black text-3xl md:text-4xl tracking-tighter text-primary leading-none">
                   YOUTH
                 </span>
               </motion.div>

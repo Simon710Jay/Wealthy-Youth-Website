@@ -85,8 +85,8 @@
   --radius-md: calc(var(--radius) - 1px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 2px);
-  --font-playfair: "Playfair Display", serif;
   --font-inter: "Inter", sans-serif;
+  --font-sans: var(--font-inter);
 }
 
 @layer base {
@@ -101,9 +101,38 @@
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-inter);
+    font-weight: 400;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-playfair);
+  h1 {
+    font-weight: 800;
+  }
+
+  h2, h3, h4, h5, h6 {
+    font-weight: 700;
+  }
+
+  button, .button, [class*="btn"] {
+    font-weight: 600;
+  }
+
+  label, form label {
+    font-weight: 500;
+  }
+
+  input, textarea, select {
+    font-family: var(--font-inter);
+  }
+
+  .card-title, [class*="CardTitle"] {
+    font-weight: 600;
+  }
+
+  nav, .navigation, [class*="nav"] {
+    font-weight: 500;
+  }
+
+  small, .small-label {
+    font-weight: 500;
   }
 }

@@ -86,7 +86,7 @@ export default function HomeClient({ events, media }: { events: any[], media: an
                   An Expression of Grace Nation International
                 </motion.div>
                 <motion.h1
-                  className="mb-6 tracking-tight font-playfair font-bold text-left leading-none"
+                  className="mb-6 tracking-tight font-bold text-left leading-none"
                   style={{ fontSize: 'clamp(2.5rem, 6vw, 5.5rem)' }}
                 >
                   {slide.title}
@@ -159,7 +159,7 @@ export default function HomeClient({ events, media }: { events: any[], media: an
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                <h2 className="text-6xl md:text-7xl font-playfair font-bold leading-none tracking-tight mb-8">
+                <h2 className="text-6xl md:text-7xl font-bold leading-none tracking-tight mb-8">
                   <span className="text-[#111111] block mb-2">Vision,</span>
                   <span className="text-primary block mb-2">Mission</span>
                   <span className="text-muted-foreground">&</span> <span className="text-[#D4A017]">Values</span>
@@ -195,7 +195,7 @@ export default function HomeClient({ events, media }: { events: any[], media: an
                   </div>
                   <div>
                     <span className="text-[10px] font-bold uppercase tracking-widest text-[#111111]/60 block mb-1">OUR VISION</span>
-                    <h4 className="font-playfair font-bold text-xl text-black mb-2">Direction & Destiny</h4>
+                    <h4 className="font-bold text-xl text-black mb-2">Direction & Destiny</h4>
                     <p className="text-muted-foreground font-light text-base leading-relaxed">
                       To see a generation of young people thoroughly equipped, empowered, and released to impact every sphere of society with kingdom principles.
                     </p>
@@ -214,7 +214,7 @@ export default function HomeClient({ events, media }: { events: any[], media: an
                   </div>
                   <div>
                     <span className="text-[10px] font-bold uppercase tracking-widest text-primary/60 block mb-1">OUR MISSION</span>
-                    <h4 className="font-playfair font-bold text-xl text-black mb-2">Assignment & Impact</h4>
+                    <h4 className="font-bold text-xl text-black mb-2">Assignment & Impact</h4>
                     <p className="text-muted-foreground font-light text-base leading-relaxed">
                       We are committed to raising kingdom leaders through intentional discipleship, leadership development, and fostering a culture of excellence and divine purpose.
                     </p>
@@ -233,7 +233,7 @@ export default function HomeClient({ events, media }: { events: any[], media: an
                   </div>
                   <div className="flex-1">
                     <span className="text-[10px] font-bold uppercase tracking-widest text-[#D4A017]/60 block mb-1">OUR VALUES</span>
-                    <h4 className="font-playfair font-bold text-xl text-black mb-4">Culture & Character</h4>
+                    <h4 className="font-bold text-xl text-black mb-4">Culture & Character</h4>
                     <div className="flex flex-wrap gap-2.5">
                       {['Faith', 'Leadership', 'Excellence', 'Integrity', 'Purpose', 'Service'].map((val) => (
                         <span key={val} className="text-xs font-semibold uppercase tracking-wider px-3.5 py-1.5 bg-[#FAFAFA] text-[#D4A017] border border-[#D4A017]/20 rounded-full hover:border-[#D4A017]/40 transition-colors">
@@ -258,7 +258,7 @@ export default function HomeClient({ events, media }: { events: any[], media: an
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-5xl font-playfair font-bold mb-4">Media Center</h2>
+              <h2 className="text-5xl font-bold mb-4">Media Center</h2>
               <p className="text-white/70 text-xl font-light">Relive the moments and catch up on latest teachings.</p>
             </motion.div>
             <motion.div
@@ -284,7 +284,7 @@ export default function HomeClient({ events, media }: { events: any[], media: an
                 <img src={media?.photos?.[0]?.url || "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&q=80"} alt="Photos" className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
                 <div className="absolute bottom-6 left-6 right-6">
-                  <h3 className="font-playfair text-3xl font-bold mb-4 text-white">Event Photos</h3>
+                  <h3 className="text-3xl font-bold mb-4 text-white">Event Photos</h3>
                   <Button asChild className="w-full rounded-full bg-white text-black hover:bg-[#FAFAFA] font-bold tracking-widest uppercase text-xs h-12 shadow-sm transition-colors border-none">
                     <Link href="/media">View Photos</Link>
                   </Button>
@@ -304,7 +304,7 @@ export default function HomeClient({ events, media }: { events: any[], media: an
                 <img src={media?.videos?.[0]?.thumbnail || "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800&q=80"} alt="Sermons" className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
                 <div className="absolute bottom-6 left-6 right-6">
-                  <h3 className="font-playfair text-3xl font-bold mb-4 text-white">Latest Sermon</h3>
+                  <h3 className="text-3xl font-bold mb-4 text-white">Latest Sermon</h3>
                   <Button asChild className="w-full rounded-full bg-primary hover:bg-[#5a0c25] text-white font-bold tracking-widest uppercase text-xs h-12 shadow-sm transition-colors border-none">
                     <Link href="/media">Watch Sermon</Link>
                   </Button>
@@ -327,7 +327,7 @@ export default function HomeClient({ events, media }: { events: any[], media: an
                 </div>
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
                 <div className="absolute bottom-6 left-6 right-6">
-                  <h3 className="font-playfair text-3xl font-bold mb-4 text-white">Live Broadcast</h3>
+                  <h3 className="text-3xl font-bold mb-4 text-white">Live Broadcast</h3>
                   <Button asChild className="w-full rounded-full bg-white text-black hover:bg-[#FAFAFA] font-bold tracking-widest uppercase text-xs h-12 shadow-sm transition-colors border-none">
                     <Link href="/media">Watch Live</Link>
                   </Button>
@@ -347,7 +347,7 @@ export default function HomeClient({ events, media }: { events: any[], media: an
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-5xl font-playfair font-bold mb-4 text-black">Upcoming Events</h2>
+              <h2 className="text-5xl font-bold mb-4 text-black">Upcoming Events</h2>
               <p className="text-muted-foreground text-xl font-light">Join us at our next gathering.</p>
             </motion.div>
             <motion.div
@@ -378,7 +378,7 @@ export default function HomeClient({ events, media }: { events: any[], media: an
                     </div>
                   </div>
                   <CardContent className="p-8 flex-1 flex flex-col">
-                    <h3 className="font-playfair font-bold text-2xl mb-4 text-black leading-snug">{event.title}</h3>
+                    <h3 className="font-bold text-2xl mb-4 text-black leading-snug">{event.title}</h3>
 
                     <div className="space-y-3 mb-8 flex-1">
                       <div className="flex items-center gap-3 text-muted-foreground font-light text-sm">
@@ -416,7 +416,7 @@ export default function HomeClient({ events, media }: { events: any[], media: an
             viewport={{ once: true }}
             className="text-center mb-20"
           >
-            <h2 className="text-5xl font-playfair font-bold mb-6 text-black">Why Wealthy Youth</h2>
+            <h2 className="text-5xl font-bold mb-6 text-black">Why Wealthy Youth</h2>
             <p className="text-muted-foreground text-xl font-light max-w-2xl mx-auto">Pillars of our movement designed to elevate your life and calling.</p>
           </motion.div>
 
@@ -434,7 +434,7 @@ export default function HomeClient({ events, media }: { events: any[], media: an
                     <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-8 mx-auto group-hover:bg-primary group-hover:text-white transition-colors duration-300">
                       <item.icon className="w-8 h-8 text-primary group-hover:text-white transition-colors duration-300" />
                     </div>
-                    <h3 className="font-playfair font-bold text-2xl mb-4 text-black">{item.title}</h3>
+                    <h3 className="font-bold text-2xl mb-4 text-black">{item.title}</h3>
                     <p className="text-muted-foreground font-light leading-relaxed">{item.desc}</p>
                   </CardContent>
                 </Card>
@@ -461,7 +461,7 @@ export default function HomeClient({ events, media }: { events: any[], media: an
             />
             
             <div className="relative z-20 p-10 md:p-16 lg:p-24 flex flex-col items-center text-center">
-              <h2 className="text-5xl md:text-6xl font-playfair font-bold text-white mb-6 leading-tight">
+              <h2 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
                 Sponsor A Generation.<br />Empower Future Leaders.
               </h2>
               <p className="text-lg md:text-xl text-white/90 font-light max-w-3xl mb-16 leading-relaxed">
@@ -475,14 +475,14 @@ export default function HomeClient({ events, media }: { events: any[], media: an
                   { title: "Give A Donation", desc: "Contribute financially to help sustain and expand Wealthy Youth programs." }
                 ].map((card, i) => (
                   <div key={i} className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 text-left hover:bg-white/20 transition-all">
-                    <h3 className="text-white font-playfair font-bold text-2xl mb-4">{card.title}</h3>
+                    <h3 className="text-white font-bold text-2xl mb-4">{card.title}</h3>
                     <p className="text-white/80 text-sm leading-relaxed">{card.desc}</p>
                   </div>
                 ))}
               </div>
 
               <div className="bg-white rounded-[32px] p-8 md:p-12 w-full max-w-4xl text-center shadow-xl">
-                <h3 className="text-3xl font-playfair font-bold text-black mb-4">Interested In Sponsoring Wealthy Youth?</h3>
+                <h3 className="text-3xl font-bold text-black mb-4">Interested In Sponsoring Wealthy Youth?</h3>
                 <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
                   Our leadership team would be delighted to discuss partnership opportunities, sponsorship packages, donations, and collaborative initiatives.
                 </p>
@@ -504,7 +504,7 @@ export default function HomeClient({ events, media }: { events: any[], media: an
       <section className="py-24 bg-white text-center">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
-            <h2 className="font-playfair font-bold text-4xl md:text-5xl mb-6 text-black">
+            <h2 className="font-bold text-4xl md:text-5xl mb-6 text-black">
               Ready to Step Into Your Destiny?
             </h2>
             <p className="text-lg md:text-xl font-light text-muted-foreground mb-10 leading-relaxed">

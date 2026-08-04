@@ -43,7 +43,7 @@ export default function LeadershipClient({ members }: { members: any[] }) {
           animate={{ opacity: 1, y: 0 }}
           className="relative z-10 text-center text-white px-4 max-w-4xl"
         >
-          <h1 className="font-playfair font-bold text-5xl md:text-7xl mb-6 uppercase tracking-widest drop-shadow-md">Our Leadership</h1>
+          <h1 className="font-bold text-5xl md:text-7xl mb-6 uppercase tracking-widest drop-shadow-md">Our Leadership</h1>
           <p className="text-xl md:text-2xl font-light text-white/80 max-w-3xl mx-auto drop-shadow-sm">
             Dedicated leaders committed to raising the next generation of kingdom influencers.
           </p>
@@ -68,7 +68,7 @@ export default function LeadershipClient({ members }: { members: any[] }) {
                     />
                   </div>
                   <CardContent className="md:col-span-3 p-10 flex flex-col justify-center">
-                    <h2 className="font-playfair font-bold text-4xl mb-2 text-black">{pastor.fullName}</h2>
+                    <h2 className="font-bold text-4xl mb-2 text-black">{pastor.fullName}</h2>
                     <p className="text-xl text-primary font-semibold mb-6">{pastor.position}</p>
                     <p className="text-muted-foreground font-light leading-relaxed mb-6 whitespace-pre-wrap">
                       {pastor.biography}
@@ -101,7 +101,7 @@ export default function LeadershipClient({ members }: { members: any[] }) {
               viewport={{ once: true }}
               className="text-center mb-16"
             >
-              <h2 className="font-playfair font-bold text-4xl md:text-5xl mb-4 text-black">Executive Leadership</h2>
+              <h2 className="font-bold text-4xl md:text-5xl mb-4 text-black">Executive Leadership</h2>
               <p className="text-xl text-muted-foreground font-light max-w-2xl mx-auto">
                 Guiding the vision and administration of Wealthy Youth.
               </p>
@@ -124,7 +124,7 @@ export default function LeadershipClient({ members }: { members: any[] }) {
                       />
                       <CardContent className="p-6 flex-1 flex flex-col justify-between">
                         <div>
-                          <h3 className="font-playfair font-bold text-2xl mb-1 text-black">{leader.fullName}</h3>
+                          <h3 className="font-bold text-2xl mb-1 text-black">{leader.fullName}</h3>
                           <p className="text-primary font-bold mb-4">{leader.position}</p>
                           <p className="text-muted-foreground font-light text-sm line-clamp-4 mb-4">{leader.biography}</p>
                         </div>
@@ -156,7 +156,7 @@ export default function LeadershipClient({ members }: { members: any[] }) {
               viewport={{ once: true }}
               className="text-center mb-16"
             >
-              <h2 className="font-playfair font-bold text-4xl md:text-5xl mb-4 text-black">Leadership Team</h2>
+              <h2 className="font-bold text-4xl md:text-5xl mb-4 text-black">Leadership Team</h2>
               <p className="text-xl text-muted-foreground font-light max-w-2xl mx-auto">
                 Meet the passionate leaders serving in various departments.
               </p>
@@ -179,7 +179,7 @@ export default function LeadershipClient({ members }: { members: any[] }) {
                       >
                         <div className="absolute inset-0 bg-black/40" />
                         <div className="absolute bottom-0 left-0 right-0 p-6 text-white z-10">
-                          <h3 className="font-playfair font-bold text-2xl mb-1">{leader.fullName}</h3>
+                          <h3 className="font-bold text-2xl mb-1">{leader.fullName}</h3>
                           <p className="text-primary font-bold mb-2">{leader.position}</p>
                           {leader.socialLinks && (
                             <div className="flex gap-2 mt-4 scale-75 origin-left">
@@ -207,7 +207,7 @@ export default function LeadershipClient({ members }: { members: any[] }) {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="font-playfair font-bold text-4xl md:text-5xl mb-4 text-black">Leadership Philosophy</h2>
+            <h2 className="font-bold text-4xl md:text-5xl mb-4 text-black">Leadership Philosophy</h2>
             <p className="text-xl text-muted-foreground font-light max-w-3xl mx-auto">
               Our leadership is built on biblical principles of servanthood, integrity, and excellence.
               We believe in leading by example and empowering others to discover and fulfill their divine calling.
@@ -241,7 +241,7 @@ export default function LeadershipClient({ members }: { members: any[] }) {
                     <div className="w-16 h-16 bg-primary/10 rounded-full mx-auto mb-6 flex items-center justify-center">
                       <span className="text-2xl font-bold text-primary">{index + 1}</span>
                     </div>
-                    <h3 className="font-playfair font-bold text-2xl mb-4 text-black">{value.title}</h3>
+                    <h3 className="font-bold text-2xl mb-4 text-black">{value.title}</h3>
                     <p className="text-muted-foreground font-light">{value.description}</p>
                   </CardContent>
                 </Card>

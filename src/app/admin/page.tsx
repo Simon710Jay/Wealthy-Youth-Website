@@ -9,7 +9,7 @@ export default async function AdminDashboard() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-playfair font-bold text-black mb-2">Dashboard</h1>
+        <h1 className="text-3xl font-bold text-black mb-2">Dashboard</h1>
         <p className="text-muted-foreground">Overview of your platform's dynamic content.</p>
       </div>
 
@@ -100,7 +100,7 @@ export default async function AdminDashboard() {
       </div>
 
       <div className="bg-white p-8 rounded-3xl border border-border-gray shadow-sm">
-        <h2 className="text-xl font-playfair font-bold text-black mb-6">Recent Registrations</h2>
+        <h2 className="text-xl font-bold text-black mb-6">Recent Registrations</h2>
         {registrations.length === 0 ? (
           <p className="text-muted-foreground text-sm">No registrations yet.</p>
         ) : (

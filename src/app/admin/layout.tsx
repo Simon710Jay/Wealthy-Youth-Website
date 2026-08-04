@@ -49,7 +49,7 @@ export default async function AdminLayout({
       {/* Sidebar */}
       <aside className="w-64 bg-white border-r border-border flex flex-col">
         <div className="p-6 border-b border-border">
-          <h2 className="text-xl font-playfair font-bold text-black">CMS Portal</h2>
+          <h2 className="text-xl font-bold text-black">CMS Portal</h2>
           <p className="text-sm text-muted-foreground capitalize">{role?.replace('_', ' ')}</p>
         </div>
         <nav className="flex-1 p-4 space-y-1">

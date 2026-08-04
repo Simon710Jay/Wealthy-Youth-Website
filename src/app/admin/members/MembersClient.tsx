@@ -16,7 +16,7 @@ export default function MembersClient({ members }: { members: any[] }) {
     <div className="space-y-8">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-playfair font-bold text-black mb-2">Members Management</h1>
+          <h1 className="text-3xl font-bold text-black mb-2">Members Management</h1>
           <p className="text-muted-foreground">View and manage platform members.</p>
         </div>
       </div>

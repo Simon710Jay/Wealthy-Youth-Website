@@ -38,10 +38,10 @@ export default function Footer() {
           {/* About */}
           <div className="space-y-8">
             <div>
-              <h3 className="font-playfair font-bold text-2xl tracking-tight leading-none mb-1">
+              <h3 className="font-bold text-2xl tracking-tight leading-none mb-1">
                 WEALTHY YOUTH
               </h3>
-              <p className="text-xs font-playfair italic text-white/70">An Expression of Grace Nation</p>
+              <p className="text-xs italic text-white/70">An Expression of Grace Nation</p>
             </div>
             <p className="text-sm text-white/80 font-light leading-relaxed">
               Empowering the next generation through faith, leadership, innovation, and purpose.
@@ -62,7 +62,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-playfair font-bold text-lg mb-8 uppercase tracking-widest text-white">Explore</h3>
+            <h3 className="font-bold text-lg mb-8 uppercase tracking-widest text-white">Explore</h3>
             <ul className="space-y-4">
               {quickLinks.map((link) => (
                 <li key={link.path}>
@@ -79,7 +79,7 @@ export default function Footer() {
 
           {/* Resources */}
           <div>
-            <h3 className="font-playfair font-bold text-lg mb-8 uppercase tracking-widest text-white">Resources</h3>
+            <h3 className="font-bold text-lg mb-8 uppercase tracking-widest text-white">Resources</h3>
             <ul className="space-y-4">
               {resources.map((link, index) => (
                 <li key={index}>
@@ -96,7 +96,7 @@ export default function Footer() {
 
           {/* Contact & Newsletter */}
           <div>
-            <h3 className="font-playfair font-bold text-lg mb-8 uppercase tracking-widest text-white">Connect</h3>
+            <h3 className="font-bold text-lg mb-8 uppercase tracking-widest text-white">Connect</h3>
             <ul className="space-y-4 mb-10">
               <li className="flex items-start gap-4 text-sm text-white/80 font-medium">
                 <MapPin className="w-5 h-5 text-primary shrink-0 mt-0.5" />

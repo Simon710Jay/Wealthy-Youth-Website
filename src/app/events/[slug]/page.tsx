@@ -32,7 +32,7 @@ export default async function EventDetailPage({ params }: { params: Promise<{ sl
             <div className="bg-primary/90 backdrop-blur-sm text-white text-xs font-bold uppercase tracking-widest py-2 px-4 rounded-full inline-block mb-6">
               Official Event
             </div>
-            <h1 className="text-5xl md:text-7xl font-playfair font-bold text-white mb-6 leading-tight">
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
               {event.title}
             </h1>
             <div className="flex flex-wrap gap-6 text-white/90">
@@ -58,7 +58,7 @@ export default async function EventDetailPage({ params }: { params: Promise<{ sl
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-16">
             <section>
-              <h2 className="text-3xl font-playfair font-bold mb-6 text-black">About The Event</h2>
+              <h2 className="text-3xl font-bold mb-6 text-black">About The Event</h2>
               <p className="text-lg text-muted-foreground leading-relaxed font-light">
                 {event.description}
               </p>
@@ -66,7 +66,7 @@ export default async function EventDetailPage({ params }: { params: Promise<{ sl
 
             {event.speakers && event.speakers.length > 0 && (
               <section>
-                <h2 className="text-3xl font-playfair font-bold mb-8 text-black">Speakers & Guests</h2>
+                <h2 className="text-3xl font-bold mb-8 text-black">Speakers & Guests</h2>
                 <div className="grid sm:grid-cols-2 gap-6">
                   {event.speakers.map((speaker: string, idx: number) => (
                     <div key={idx} className="flex items-center gap-4 bg-[#FAFAFA] p-4 rounded-2xl border border-border-gray/50">
@@ -85,7 +85,7 @@ export default async function EventDetailPage({ params }: { params: Promise<{ sl
 
             {mediaList.length > 0 && (
               <section>
-                <h2 className="text-3xl font-playfair font-bold mb-8 text-black">Event Gallery</h2>
+                <h2 className="text-3xl font-bold mb-8 text-black">Event Gallery</h2>
                 {images.length > 0 && (
                   <div className="grid grid-cols-2 gap-4 mb-8">
                     {images.map((img: any) => (
@@ -111,7 +111,7 @@ export default async function EventDetailPage({ params }: { params: Promise<{ sl
           {/* Sidebar CTA */}
           <div className="lg:col-span-1">
             <div className="sticky top-32 bg-[#FAFAFA] p-8 rounded-[32px] border border-border-gray shadow-sm">
-              <h3 className="text-2xl font-playfair font-bold mb-2 text-black">Secure Your Seat</h3>
+              <h3 className="text-2xl font-bold mb-2 text-black">Secure Your Seat</h3>
               <p className="text-muted-foreground text-sm mb-8">Registration is free but mandatory for seating arrangement.</p>
               
               <div className="space-y-4 mb-8">

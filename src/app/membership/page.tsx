@@ -178,7 +178,7 @@ function MembershipContent() {
           animate={{ opacity: 1, y: 0 }}
           className="relative z-10 text-center text-white px-4 max-w-4xl"
         >
-          <h1 className="font-playfair font-bold text-5xl md:text-7xl mb-6 uppercase tracking-widest drop-shadow-md">Join Wealthy Youth</h1>
+          <h1 className="font-bold text-5xl md:text-7xl mb-6 uppercase tracking-widest drop-shadow-md">Join Wealthy Youth</h1>
           <p className="text-xl md:text-2xl font-light text-white/80 max-w-3xl mx-auto drop-shadow-sm">
             Become part of a thriving community of passionate young leaders.
           </p>
@@ -194,7 +194,7 @@ function MembershipContent() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="font-playfair font-bold text-4xl md:text-5xl mb-4 text-black">Membership Benefits</h2>
+            <h2 className="font-bold text-4xl md:text-5xl mb-4 text-black">Membership Benefits</h2>
             <p className="text-xl text-muted-foreground font-light max-w-2xl mx-auto">
               Experience growth, community, and purpose through exclusive member benefits.
             </p>
@@ -214,7 +214,7 @@ function MembershipContent() {
                     <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center mb-6">
                       <benefit.icon className="w-6 h-6 text-primary" />
                     </div>
-                    <h3 className="font-playfair font-bold text-xl mb-3 text-black">{benefit.title}</h3>
+                    <h3 className="font-bold text-xl mb-3 text-black">{benefit.title}</h3>
                     <p className="text-muted-foreground font-light leading-relaxed">{benefit.description}</p>
                   </CardContent>
                 </Card>
@@ -243,7 +243,7 @@ function MembershipContent() {
               <TabsContent value="register" className="mt-0">
                 <Card className="border-none shadow-xl rounded-3xl bg-white overflow-hidden">
                   <CardHeader className="p-8 pb-4 bg-primary/5 text-center">
-                    <CardTitle className="font-playfair font-bold text-3xl text-black">New Member Registration</CardTitle>
+                    <CardTitle className="font-bold text-3xl text-black">New Member Registration</CardTitle>
                     <p className="text-muted-foreground font-light mt-1">
                       Fill out the form below to join the Wealthy Youth family.
                     </p>
@@ -252,7 +252,7 @@ function MembershipContent() {
                     <form onSubmit={handleRegisterSubmit} className="space-y-6">
                       {/* Personal Information */}
                       <div>
-                        <h3 className="font-playfair font-bold text-xl mb-4 text-black">Personal Information</h3>
+                        <h3 className="font-bold text-xl mb-4 text-black">Personal Information</h3>
                         <div className="grid md:grid-cols-2 gap-4">
                           <div>
                             <Label htmlFor="firstName" className="block mb-2 font-semibold uppercase tracking-widest text-xs text-black">First Name *</Label>
@@ -348,7 +348,7 @@ function MembershipContent() {
 
                       {/* Address */}
                       <div>
-                        <h3 className="font-playfair font-bold text-xl mb-4 text-black">Address</h3>
+                        <h3 className="font-bold text-xl mb-4 text-black">Address</h3>
                         <div className="space-y-4">
                           <div>
                             <Label htmlFor="address" className="block mb-2 font-semibold uppercase tracking-widest text-xs text-black">Street Address</Label>
@@ -397,7 +397,7 @@ function MembershipContent() {
 
                       {/* Emergency Contact */}
                       <div>
-                        <h3 className="font-playfair font-bold text-xl mb-4 text-black">Emergency Contact</h3>
+                        <h3 className="font-bold text-xl mb-4 text-black">Emergency Contact</h3>
                         <div className="grid md:grid-cols-2 gap-4">
                           <div>
                             <Label htmlFor="emergencyContact" className="block mb-2 font-semibold uppercase tracking-widest text-xs text-black">Contact Name</Label>
@@ -458,7 +458,7 @@ function MembershipContent() {
               <TabsContent value="login" className="mt-0">
                 <Card className="border-none shadow-xl rounded-3xl bg-white overflow-hidden max-w-xl mx-auto">
                   <CardHeader className="p-8 pb-4 bg-primary/5 text-center">
-                    <CardTitle className="font-playfair font-bold text-3xl text-black">Member Login</CardTitle>
+                    <CardTitle className="font-bold text-3xl text-black">Member Login</CardTitle>
                     <p className="text-muted-foreground font-light mt-1">
                       Access your member dashboard and resources.
                     </p>
@@ -536,7 +536,7 @@ function MembershipContent() {
                 <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
                   <Shield className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="font-playfair font-bold text-2xl mb-4 text-black">Your Privacy Matters</h3>
+                <h3 className="font-bold text-2xl mb-4 text-black">Your Privacy Matters</h3>
                 <p className="text-muted-foreground font-light leading-relaxed">
                   All information is securely stored and only used for ministry purposes.
                   We never share your personal data with third parties.

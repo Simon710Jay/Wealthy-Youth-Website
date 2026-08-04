@@ -96,7 +96,7 @@ export default function LeadershipClient({ initialMembers }: { initialMembers: a
   if (isEditing) {
     return (
       <div className="bg-white p-8 rounded-3xl border border-border-gray shadow-sm">
-        <h2 className="text-2xl font-playfair font-bold text-black mb-6">
+        <h2 className="text-2xl font-bold text-black mb-6">
           {currentMember._id ? 'Edit Leadership Member' : 'Add Leadership Member'}
         </h2>
         <form onSubmit={handleSave} className="space-y-6">
@@ -163,7 +163,7 @@ export default function LeadershipClient({ initialMembers }: { initialMembers: a
     <div className="space-y-8">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-playfair font-bold text-black mb-2">Leadership Management</h1>
+          <h1 className="text-3xl font-bold text-black mb-2">Leadership Management</h1>
           <p className="text-muted-foreground">Manage Lead Pastor and Leadership Team profiles.</p>
         </div>
         <Button onClick={() => {

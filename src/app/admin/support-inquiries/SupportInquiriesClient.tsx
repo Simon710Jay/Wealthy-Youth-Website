@@ -45,7 +45,7 @@ export default function SupportInquiriesClient({ initialInquiries }: { initialIn
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-playfair font-bold text-black">Support Inquiries</h1>
+          <h1 className="text-3xl font-bold text-black">Support Inquiries</h1>
           <p className="text-muted-foreground mt-1">Manage sponsorship and support requests</p>
         </div>
       </div>
@@ -141,7 +141,7 @@ export default function SupportInquiriesClient({ initialInquiries }: { initialIn
           <Card className="w-full max-w-2xl shadow-xl animate-in fade-in zoom-in-95">
             <div className="p-6 border-b border-border flex justify-between items-start">
               <div>
-                <h3 className="text-2xl font-playfair font-bold text-black mb-1">Inquiry Details</h3>
+                <h3 className="text-2xl font-bold text-black mb-1">Inquiry Details</h3>
                 <p className="text-sm text-muted-foreground">Submitted on {new Date(selectedInquiry.createdAt).toLocaleString()}</p>
               </div>
               <Button variant="ghost" size="sm" onClick={() => setSelectedInquiry(null)}>✕</Button>

@@ -77,7 +77,7 @@ export default function SupportPage() {
           <div className="w-20 h-20 bg-green-50 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
             <CheckCircle2 className="w-10 h-10" />
           </div>
-          <h2 className="text-3xl font-playfair font-bold text-black mb-4">Inquiry Received!</h2>
+          <h2 className="text-3xl font-bold text-black mb-4">Inquiry Received!</h2>
           <p className="text-muted-foreground mb-8">
             Thank you for your interest in supporting Wealthy Youth. Our leadership team will review your inquiry and get back to you shortly.
           </p>
@@ -105,7 +105,7 @@ export default function SupportPage() {
           className="absolute inset-0 w-full h-full object-cover opacity-50 mix-blend-overlay"
         />
         <div className="relative z-20 text-center px-4 max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-6xl font-playfair font-bold text-white mb-6">
+          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
             Sponsor & Support
           </h1>
           <p className="text-lg text-white/90 font-light max-w-2xl mx-auto">
@@ -123,7 +123,7 @@ export default function SupportPage() {
           <div className="grid lg:grid-cols-2 gap-16">
             {/* Left Column: Info */}
             <div>
-              <h2 className="text-4xl font-playfair font-bold text-black mb-6">Partner With Our Vision</h2>
+              <h2 className="text-4xl font-bold text-black mb-6">Partner With Our Vision</h2>
               <p className="text-muted-foreground leading-relaxed mb-12">
                 Through your generous support, Wealthy Youth continues to organize transformational conferences, empower young leaders, support outreach programs, and build a thriving community of impact.
               </p>
@@ -135,7 +135,7 @@ export default function SupportPage() {
                       <option.icon className="w-6 h-6 text-primary" />
                     </div>
                     <div>
-                      <h4 className="font-playfair font-bold text-xl text-black mb-2">{option.title}</h4>
+                      <h4 className="font-bold text-xl text-black mb-2">{option.title}</h4>
                       <p className="text-sm text-muted-foreground">{option.description}</p>
                     </div>
                   </div>
@@ -143,7 +143,7 @@ export default function SupportPage() {
               </div>
 
               <div className="mt-16 bg-white p-8 rounded-3xl border border-border-gray shadow-sm">
-                <h3 className="font-playfair font-bold text-2xl text-black mb-4">Contact Leadership</h3>
+                <h3 className="font-bold text-2xl text-black mb-4">Contact Leadership</h3>
                 <p className="text-sm text-muted-foreground mb-6">
                   Our leadership team would be delighted to discuss partnership opportunities, sponsorship packages, donations, and collaborative initiatives.
                 </p>
@@ -159,7 +159,7 @@ export default function SupportPage() {
             {/* Right Column: Form */}
             <div>
               <div className="bg-white p-8 md:p-12 rounded-[32px] shadow-sm border border-border-gray">
-                <h3 className="text-2xl font-playfair font-bold text-black mb-8">Submit An Inquiry</h3>
+                <h3 className="text-2xl font-bold text-black mb-8">Submit An Inquiry</h3>
                 
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                   {error && (

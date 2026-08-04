@@ -99,7 +99,7 @@ export default function RegisterPage() {
           <div className="w-20 h-20 bg-green-50 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
             <CheckCircle2 className="w-10 h-10" />
           </div>
-          <h2 className="text-3xl font-playfair font-bold text-black mb-4">Registration Successful!</h2>
+          <h2 className="text-3xl font-bold text-black mb-4">Registration Successful!</h2>
           <p className="text-muted-foreground mb-8">
             Thank you for registering for <span className="font-medium text-black">{eventTitle}</span>.
             We have sent a confirmation email to your inbox with further details.
@@ -142,7 +142,7 @@ export default function RegisterPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end">
                 <div className="p-8 md:p-12 text-white w-full">
-                  <h1 className="text-4xl font-playfair font-bold mb-4">{eventDetails.title}</h1>
+                  <h1 className="text-4xl font-bold mb-4">{eventDetails.title}</h1>
                   <div className="flex flex-wrap gap-6 text-sm font-medium">
                     <div className="flex items-center gap-2">
                       <Calendar className="w-4 h-4 text-primary" />
@@ -162,7 +162,7 @@ export default function RegisterPage() {
             </div>
           ) : (
             <div className="p-8 md:p-12 pb-0">
-              <h1 className="text-4xl font-playfair font-bold text-black mb-2">Register</h1>
+              <h1 className="text-4xl font-bold text-black mb-2">Register</h1>
               <p className="text-muted-foreground">Secure your seat for {eventTitle}</p>
             </div>
           )}
