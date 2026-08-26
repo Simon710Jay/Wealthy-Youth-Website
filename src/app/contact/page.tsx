@@ -27,12 +27,12 @@ export default function Contact() {
     {
       icon: MapPin,
       title: 'Visit Us',
-      details: ['123 Kingdom Street', 'City, State 12345', 'United States'],
+      details: ['Plot 4–12, Oshofian Street', 'off Odozi Street, by Ereke Bus Stop', 'Ojodu Berger, Lagos, Nigeria.'],
     },
     {
       icon: Phone,
       title: 'Call Us',
-      details: ['+1 (234) 567-890', '+1 (234) 567-891', 'Mon - Fri, 9AM - 5PM'],
+      details: ['+234 808 705 3009', 'Mon - Fri, 9AM - 5PM'],
     },
     {
       icon: Mail,
@@ -142,7 +142,7 @@ export default function Contact() {
                         <label className="block mb-2 font-medium">Phone</label>
                         <Input
                           type="tel"
-                          placeholder="+1 (234) 567-890"
+                          placeholder="+234 808 705 3009"
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         />
@@ -191,7 +191,7 @@ export default function Contact() {
                   <div className="text-center text-white">
                     <MapPin className="w-20 h-20 mx-auto mb-4" />
                     <p className="text-xl">Interactive Map</p>
-                    <p className="text-gray-300 mt-2">123 Kingdom Street, City, State</p>
+                    <p className="text-gray-300 mt-2">Plot 4–12, Oshofian Street, Lagos, Nigeria.</p>
                   </div>
                 </div>
               </Card>

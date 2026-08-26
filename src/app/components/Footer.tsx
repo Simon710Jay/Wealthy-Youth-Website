@@ -100,11 +100,11 @@ export default function Footer() {
             <ul className="space-y-4 mb-10">
               <li className="flex items-start gap-4 text-sm text-white/80 font-medium">
                 <MapPin className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                <span>123 Kingdom Street, City, State 12345</span>
+                <span>Plot 4–12, Oshofian Street, off Odozi Street, by Ereke Bus Stop, Ojodu Berger, Lagos, Nigeria.</span>
               </li>
               <li className="flex items-center gap-4 text-sm text-white/80 font-medium">
                 <Phone className="w-5 h-5 text-primary shrink-0" />
-                <a href="tel:+1234567890" className="hover:text-white transition-colors">+1 (234) 567-890</a>
+                <a href="tel:+2348087053009" className="hover:text-white transition-colors">+234 808 705 3009</a>
               </li>
               <li className="flex items-center gap-4 text-sm text-white/80 font-medium">
                 <Mail className="w-5 h-5 text-primary shrink-0" />

@@ -13,10 +13,6 @@ export default function ProductDetailClient({ product }: { product: any }) {
   const [selectedColor, setSelectedColor] = useState(product.colors?.[0] || '');
   const [isWishlist, setIsWishlist] = useState(false);
 
-  const handleAddToCart = () => {
-    toast.success(`Added ${product.name} to cart!`);
-  };
-
   const toggleWishlist = () => {
     setIsWishlist(!isWishlist);
     toast[isWishlist ? 'info' : 'success'](isWishlist ? 'Removed from wishlist' : 'Added to wishlist');
@@ -147,13 +143,16 @@ export default function ProductDetailClient({ product }: { product: any }) {
                )}
               
               <div className="flex gap-4">
-                <Button 
-                  onClick={handleAddToCart}
-                  disabled={product.stockQuantity <= 0}
-                  className="flex-1 py-6 rounded-full text-lg bg-primary hover:bg-primary/90 text-white shadow-xl hover:-translate-y-1 transition-all active:scale-95"
+                <Link 
+                  href={`/contact?subject=Order%20Inquiry:%20${encodeURIComponent(product.name)}`}
+                  className="flex-1"
                 >
-                  <ShoppingCart className="w-5 h-5 mr-2" /> Add to Cart
-                </Button>
+                  <Button 
+                    className="w-full h-full py-6 rounded-full text-lg bg-primary hover:bg-primary/90 text-white shadow-xl hover:-translate-y-1 transition-all active:scale-95"
+                  >
+                    Order Now
+                  </Button>
+                </Link>
                 <button
                   onClick={toggleWishlist}
                   className="w-16 h-14 rounded-full border-2 border-border-gray flex items-center justify-center text-muted-foreground hover:border-red-500 hover:text-red-500 transition-colors"

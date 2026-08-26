@@ -21,15 +21,9 @@ interface Product {
 }
 
 export default function ShopClient({ initialProducts }: { initialProducts: Product[] }) {
-  const [cart, setCart] = useState<string[]>([]);
   const [wishlist, setWishlist] = useState<string[]>([]);
 
   const products = initialProducts;
-
-  const addToCart = (productId: string) => {
-    setCart([...cart, productId]);
-    toast.success('Added to cart!');
-  };
 
   const toggleWishlist = (productId: string) => {
     if (wishlist.includes(productId)) {
@@ -70,20 +64,7 @@ export default function ShopClient({ initialProducts }: { initialProducts: Produ
         </motion.div>
       </section>
 
-      {/* Cart Summary */}
-      {cart.length > 0 && (
-        <div className="sticky top-20 z-40 bg-accent text-secondary py-3 shadow-lg">
-          <div className="container mx-auto px-4 flex justify-between items-center">
-            <span className="font-medium">
-              {cart.length} {cart.length === 1 ? 'item' : 'items'} in cart
-            </span>
-            <Button size="sm" className="bg-primary text-white rounded-full shadow-md transition-all duration-300 hover:bg-primary/90 hover:-translate-y-0.5 hover:shadow-lg hover:text-white active:scale-95 cursor-pointer">
-              <ShoppingCart className="w-4 h-4 mr-2" />
-              View Cart
-            </Button>
-          </div>
-        </div>
-      )}
+
 
       {/* Products */}
       <section className="py-16 bg-background">
@@ -187,14 +168,13 @@ export default function ShopClient({ initialProducts }: { initialProducts: Produ
                       )}
                     </div>
 
-                    <Button
-                      onClick={() => addToCart(product._id)}
-                      disabled={product.stockQuantity <= 0}
-                      className="w-full bg-primary text-white rounded-full shadow-md transition-all duration-300 hover:bg-primary/90 hover:-translate-y-0.5 hover:shadow-lg hover:text-white active:scale-95 cursor-pointer"
-                    >
-                      <ShoppingCart className="w-4 h-4 mr-2" />
-                      Add to Cart
-                    </Button>
+                    <Link href={`/contact?subject=Order%20Inquiry:%20${encodeURIComponent(product.name)}`}>
+                      <Button
+                        className="w-full bg-primary text-white rounded-full shadow-md transition-all duration-300 hover:bg-primary/90 hover:-translate-y-0.5 hover:shadow-lg hover:text-white active:scale-95 cursor-pointer"
+                      >
+                        Order Now
+                      </Button>
+                    </Link>
                   </CardContent>
                 </Card>
               </motion.div>
