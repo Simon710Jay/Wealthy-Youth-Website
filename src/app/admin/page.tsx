@@ -97,6 +97,18 @@ export default async function AdminDashboard() {
             </div>
           </CardContent>
         </Card>
+
+        <Card className="rounded-2xl border-border-gray shadow-sm">
+          <CardContent className="p-6 flex items-center gap-4">
+            <div className="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center flex-shrink-0 text-blue-600">
+              <ShoppingBag className="w-5 h-5" />
+            </div>
+            <div>
+              <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Products</p>
+              <p className="text-2xl font-bold text-black">{stats.totalProducts}</p>
+            </div>
+          </CardContent>
+        </Card>
       </div>
 
       <div className="bg-white p-8 rounded-3xl border border-border-gray shadow-sm">

@@ -17,16 +17,32 @@ export default function HomeClient({ events, media }: { events: any[], media: an
       title: 'Raising Kingdom Leaders for Global Impact',
       subtitle: 'Empowering the next generation through faith, leadership, innovation, and purpose.',
       image: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=1920&q=80',
+      primaryText: 'Join Wealthy Youth',
+      primaryLink: '/membership',
+      secondaryText: 'Watch Teachings',
+      secondaryLink: '/sermons',
+      showPlayIcon: true,
     },
     {
       title: 'Experience Transformation Through Community',
       subtitle: 'Join thousands of young leaders discovering their divine purpose and destiny.',
       image: 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=1920&q=80',
+      primaryText: 'Join Wealthy Youth',
+      primaryLink: '/membership',
+      secondaryText: 'Watch Teachings',
+      secondaryLink: '/sermons',
+      showPlayIcon: true,
     },
     {
-      title: 'Building the Future, One Leader at a Time',
-      subtitle: 'Equipping youth with biblical wisdom and practical skills for kingdom excellence.',
-      image: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=1920&q=80',
+      title: 'International Youth Conference 2026',
+      subtitle: 'WITNESSES • 7th–13th Sept 2026 – 4pm',
+      image: '/images/iyc-2026-banner.jpg',
+      bgPosition: 'center top',
+      primaryText: 'Explore Events',
+      primaryLink: '/events',
+      secondaryText: 'View Details',
+      secondaryLink: '/events',
+      showPlayIcon: false,
     },
   ];
 
@@ -64,8 +80,11 @@ export default function HomeClient({ events, media }: { events: any[], media: an
             style={{ pointerEvents: currentSlide === index ? 'auto' : 'none' }}
           >
             <div
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url(${slide.image})` }}
+              className="absolute inset-0 bg-cover"
+              style={{ 
+                backgroundImage: `url(${slide.image})`,
+                backgroundPosition: slide.bgPosition || 'center'
+              }}
             >
               <div className="absolute inset-0 bg-black/60" />
             </div>
@@ -102,7 +121,7 @@ export default function HomeClient({ events, media }: { events: any[], media: an
                     size="lg"
                     className="bg-primary hover:bg-primary/90 text-white px-10 py-7 text-base font-bold rounded-full shadow-lg transition-all duration-300"
                   >
-                    <Link href="/membership">Join Wealthy Youth</Link>
+                    <Link href={slide.primaryLink}>{slide.primaryText}</Link>
                   </Button>
                   <Button
                     asChild
@@ -110,9 +129,9 @@ export default function HomeClient({ events, media }: { events: any[], media: an
                     variant="outline"
                     className="border border-white/20 bg-white/10 hover:bg-primary hover:border-primary hover:text-white px-10 py-7 text-base font-semibold rounded-full transition-all duration-300"
                   >
-                    <Link href="/sermons">
-                      <Play className="mr-3 w-5 h-5 fill-white" />
-                      Watch Teachings
+                    <Link href={slide.secondaryLink}>
+                      {slide.showPlayIcon && <Play className="mr-3 w-5 h-5 fill-white" />}
+                      {slide.secondaryText}
                     </Link>
                   </Button>
                 </div>

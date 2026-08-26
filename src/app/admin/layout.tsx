@@ -37,7 +37,7 @@ export default async function AdminLayout({
     { name: 'Media Gallery', href: '/admin/media', icon: ImageIcon, roles: ['super_admin', 'media_admin'] },
     { name: 'Leadership', href: '/admin/leadership', icon: Users, roles: ['super_admin'] },
     { name: 'Sermons', href: '/admin/sermons', icon: Video, roles: ['super_admin', 'sermons_admin'] },
-    { name: 'Shop Products', href: '/admin/shop', icon: ShoppingCart, roles: ['super_admin', 'shop_admin'] },
+    { name: 'Shop Products', href: '/admin/shop/products', icon: ShoppingCart, roles: ['super_admin', 'shop_admin'] },
     { name: 'Orders', href: '/admin/orders', icon: CreditCard, roles: ['super_admin', 'shop_admin'] },
     { name: 'Support Inquiries', href: '/admin/support-inquiries', icon: HeartHandshake, roles: ['super_admin'] },
   ];

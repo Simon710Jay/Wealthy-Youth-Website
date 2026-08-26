@@ -4,6 +4,8 @@ import { getEventBySlug, getMediaForEvent } from '@/lib/actions';
 import { Calendar, MapPin, Clock, Users, ArrowRight } from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
 
+export const dynamic = 'force-dynamic';
+
 export default async function EventDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const event = await getEventBySlug(slug);
@@ -68,14 +70,19 @@ export default async function EventDetailPage({ params }: { params: Promise<{ sl
               <section>
                 <h2 className="text-3xl font-bold mb-8 text-black">Speakers & Guests</h2>
                 <div className="grid sm:grid-cols-2 gap-6">
-                  {event.speakers.map((speaker: string, idx: number) => (
-                    <div key={idx} className="flex items-center gap-4 bg-[#FAFAFA] p-4 rounded-2xl border border-border-gray/50">
-                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                        <Users className="w-5 h-5 text-primary" />
+                  {event.speakers.sort((a: any, b: any) => a.displayOrder - b.displayOrder).map((speaker: any, idx: number) => (
+                    <div key={speaker.publicId || idx} className="flex items-center gap-4 bg-[#FAFAFA] p-4 rounded-2xl border border-border-gray/50">
+                      <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 overflow-hidden border-2 border-white shadow-sm">
+                        {speaker.imageUrl ? (
+                           <img src={speaker.imageUrl} alt={speaker.name} className="w-full h-full object-cover" />
+                        ) : (
+                           <Users className="w-6 h-6 text-primary" />
+                        )}
                       </div>
                       <div>
-                        <h4 className="font-bold text-black">{speaker}</h4>
-                        <p className="text-sm text-muted-foreground">Guest Speaker</p>
+                        <h4 className="font-bold text-black text-lg">{speaker.name}</h4>
+                        <p className="text-sm font-medium text-primary mb-1">{speaker.role}</p>
+                        {speaker.bio && <p className="text-xs text-muted-foreground line-clamp-2">{speaker.bio}</p>}
                       </div>
                     </div>
                   ))}

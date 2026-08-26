@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react';
 import { Button } from '@/app/components/ui/button';
-import { Plus, X, UploadCloud, Edit, Trash2, Eye, EyeOff } from 'lucide-react';
+import { Plus, X, UploadCloud, Edit, Trash2, Eye, EyeOff, ChevronUp, ChevronDown, User as UserIcon } from 'lucide-react';
 import { createEvent, updateEvent, deleteEvent } from '@/lib/actions';
 import { useRouter } from 'next/navigation';
 
@@ -32,6 +32,9 @@ export default function AdminEventsClient({ initialEvents, regCounts }: { initia
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  // Speakers State
+  const [speakers, setSpeakers] = useState<any[]>([]);
+
   const openModal = (event?: any) => {
     if (event) {
       setEditingEvent(event);
@@ -48,6 +51,7 @@ export default function AdminEventsClient({ initialEvents, regCounts }: { initia
       setPublished(event.published !== false);
       setPreviewUrl(event.banner || null);
       setFile(null);
+      setSpeakers(event.speakers || []);
     } else {
       setEditingEvent(null);
       setTitle('');
@@ -63,6 +67,7 @@ export default function AdminEventsClient({ initialEvents, regCounts }: { initia
       setPublished(true);
       setPreviewUrl(null);
       setFile(null);
+      setSpeakers([]);
     }
     setIsModalOpen(true);
   };
@@ -92,6 +97,43 @@ export default function AdminEventsClient({ initialEvents, regCounts }: { initia
     }
   };
 
+  // Speakers handlers
+  const addSpeaker = () => {
+    setSpeakers([...speakers, { id: Date.now().toString(), name: '', role: 'Guest Pastor', bio: '', displayOrder: speakers.length, file: null, imageUrl: '', publicId: '' }]);
+  };
+
+  const updateSpeaker = (index: number, field: string, value: any) => {
+    const newSpeakers = [...speakers];
+    newSpeakers[index] = { ...newSpeakers[index], [field]: value };
+    setSpeakers(newSpeakers);
+  };
+
+  const removeSpeaker = (index: number) => {
+    setSpeakers(speakers.filter((_, i) => i !== index));
+  };
+
+  const moveSpeaker = (index: number, direction: 'up' | 'down') => {
+    const newSpeakers = [...speakers];
+    if (direction === 'up' && index > 0) {
+      const temp = newSpeakers[index - 1];
+      newSpeakers[index - 1] = newSpeakers[index];
+      newSpeakers[index] = temp;
+    } else if (direction === 'down' && index < newSpeakers.length - 1) {
+      const temp = newSpeakers[index + 1];
+      newSpeakers[index + 1] = newSpeakers[index];
+      newSpeakers[index] = temp;
+    }
+    setSpeakers(newSpeakers);
+  };
+
+  const handleSpeakerImageChange = (index: number, e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const selectedFile = e.target.files[0];
+      updateSpeaker(index, 'file', selectedFile);
+      updateSpeaker(index, 'preview', URL.createObjectURL(selectedFile));
+    }
+  };
+
   const handleSaveEvent = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -112,8 +154,41 @@ export default function AdminEventsClient({ initialEvents, regCounts }: { initia
         if (uploadData.secure_url) {
           bannerUrl = uploadData.secure_url;
         } else {
-          throw new Error('Image upload failed');
+          console.error('Upload Error Data:', uploadData);
+          throw new Error(uploadData.error || 'Image upload failed');
         }
+      }
+
+      const uploadedSpeakers = [];
+      for (let i = 0; i < speakers.length; i++) {
+        const speaker = speakers[i];
+        let imgUrl = speaker.imageUrl;
+        let pubId = speaker.publicId;
+
+        if (speaker.file) {
+          const formData = new FormData();
+          formData.append('file', speaker.file);
+          formData.append('folder', 'wealthy_youth/speakers');
+          
+          const uploadRes = await fetch('/api/upload', {
+            method: 'POST',
+            body: formData
+          });
+          const uploadData = await uploadRes.json();
+          if (uploadData.secure_url) {
+            imgUrl = uploadData.secure_url;
+            pubId = uploadData.public_id;
+          }
+        }
+
+        uploadedSpeakers.push({
+          name: speaker.name,
+          role: speaker.role,
+          imageUrl: imgUrl,
+          publicId: pubId,
+          bio: speaker.bio,
+          displayOrder: i
+        });
       }
 
       const eventData = {
@@ -128,7 +203,8 @@ export default function AdminEventsClient({ initialEvents, regCounts }: { initia
         registrationClose: registrationClose || undefined,
         featured,
         published,
-        banner: bannerUrl
+        banner: bannerUrl,
+        speakers: uploadedSpeakers
       };
 
       if (editingEvent) {
@@ -141,9 +217,9 @@ export default function AdminEventsClient({ initialEvents, regCounts }: { initia
       
       setIsModalOpen(false);
       router.refresh();
-    } catch (error) {
+    } catch (error: any) {
       console.error('Failed to save event:', error);
-      alert('Failed to save event');
+      alert(`Failed to save event: ${error.message || 'Unknown error'}`);
     } finally {
       setIsSubmitting(false);
     }
@@ -339,6 +415,65 @@ export default function AdminEventsClient({ initialEvents, regCounts }: { initia
               <div className="space-y-2">
                 <label className="text-sm font-bold text-black">Event Description</label>
                 <textarea required value={description} onChange={(e) => setDescription(e.target.value)} rows={4} className="w-full px-4 py-3 rounded-xl border border-border-gray bg-[#FAFAFA] focus:bg-white transition-colors" placeholder="Event details..." />
+              </div>
+
+              {/* SPEAKERS AND GUESTS */}
+              <div className="space-y-4 pt-6 border-t border-border-gray">
+                <div className="flex justify-between items-center">
+                  <label className="text-lg font-bold text-black">Speakers & Guests</label>
+                  <Button type="button" onClick={addSpeaker} variant="outline" size="sm" className="rounded-full">
+                    <Plus className="w-4 h-4 mr-2" /> Add Speaker
+                  </Button>
+                </div>
+                
+                {speakers.length === 0 ? (
+                   <p className="text-sm text-muted-foreground bg-[#FAFAFA] p-4 rounded-xl text-center border border-border-gray">No speakers added yet.</p>
+                ) : (
+                  <div className="space-y-4">
+                    {speakers.map((speaker, index) => (
+                      <div key={speaker.id || index} className="p-4 border border-border-gray rounded-xl bg-[#FAFAFA] flex flex-col md:flex-row gap-4 relative">
+                        <div className="flex-shrink-0 flex flex-col gap-2">
+                          <label className="relative w-24 h-24 rounded-full overflow-hidden bg-white border border-border-gray flex items-center justify-center cursor-pointer hover:border-primary transition-colors group">
+                             {speaker.preview || speaker.imageUrl ? (
+                               <img src={speaker.preview || speaker.imageUrl} alt="Speaker" className="w-full h-full object-cover" />
+                             ) : (
+                               <UserIcon className="w-8 h-8 text-muted-foreground group-hover:text-primary" />
+                             )}
+                             <input type="file" className="hidden" accept="image/*" onChange={(e) => handleSpeakerImageChange(index, e)} />
+                             <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center text-[10px] text-white font-bold text-center">
+                               Change Photo
+                             </div>
+                          </label>
+                        </div>
+                        <div className="flex-grow grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div>
+                             <label className="text-xs font-bold text-muted-foreground mb-1 block">Name *</label>
+                             <input required value={speaker.name} onChange={(e) => updateSpeaker(index, 'name', e.target.value)} className="w-full px-3 py-2 rounded-lg border border-border-gray text-sm" placeholder="e.g. Dr. Christian Okafor" />
+                          </div>
+                          <div>
+                             <label className="text-xs font-bold text-muted-foreground mb-1 block">Role *</label>
+                             <input required value={speaker.role} onChange={(e) => updateSpeaker(index, 'role', e.target.value)} className="w-full px-3 py-2 rounded-lg border border-border-gray text-sm" placeholder="e.g. Guest Pastor, Anchor Speaker" />
+                          </div>
+                          <div className="sm:col-span-2">
+                             <label className="text-xs font-bold text-muted-foreground mb-1 block">Biography (Optional)</label>
+                             <textarea value={speaker.bio} onChange={(e) => updateSpeaker(index, 'bio', e.target.value)} rows={2} className="w-full px-3 py-2 rounded-lg border border-border-gray text-sm" placeholder="Short bio..." />
+                          </div>
+                        </div>
+                        <div className="flex flex-row md:flex-col gap-2 items-center justify-center border-t md:border-t-0 md:border-l border-border-gray pt-4 md:pt-0 md:pl-4">
+                           <Button type="button" variant="ghost" size="icon" onClick={() => moveSpeaker(index, 'up')} disabled={index === 0} className="w-8 h-8">
+                             <ChevronUp className="w-4 h-4 text-muted-foreground" />
+                           </Button>
+                           <Button type="button" variant="ghost" size="icon" onClick={() => moveSpeaker(index, 'down')} disabled={index === speakers.length - 1} className="w-8 h-8">
+                             <ChevronDown className="w-4 h-4 text-muted-foreground" />
+                           </Button>
+                           <Button type="button" variant="ghost" size="icon" onClick={() => removeSpeaker(index)} className="w-8 h-8 hover:bg-red-100">
+                             <Trash2 className="w-4 h-4 text-red-600" />
+                           </Button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
 
               <div className="flex items-center gap-6 p-4 bg-[#FAFAFA] rounded-xl border border-border-gray">

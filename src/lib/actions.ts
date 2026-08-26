@@ -16,6 +16,8 @@ import {
 // ---------------------------
 // DASHBOARD
 // ---------------------------
+import { revalidatePath } from 'next/cache';
+
 export async function getDashboardStats() {
   await connectMongo();
   
@@ -26,7 +28,10 @@ export async function getDashboardStats() {
     totalMedia,
     totalSermons,
     totalOrders,
-    totalLeadershipMembers
+    totalLeadershipMembers,
+    totalProducts,
+    totalPublishedProducts,
+    outOfStockProducts
   ] = await Promise.all([
     User.countDocuments({ role: 'member' }),
     EventModel.countDocuments(),
@@ -34,7 +39,10 @@ export async function getDashboardStats() {
     Media.countDocuments(),
     Sermon.countDocuments(),
     Order?.countDocuments() || 0,
-    Leadership.countDocuments()
+    Leadership.countDocuments(),
+    ShopProduct.countDocuments(),
+    ShopProduct.countDocuments({ published: true }),
+    ShopProduct.countDocuments({ status: 'Out of Stock' })
   ]);
 
   return {
@@ -44,7 +52,10 @@ export async function getDashboardStats() {
     totalMedia,
     totalSermons,
     totalOrders,
-    totalLeadershipMembers
+    totalLeadershipMembers,
+    totalProducts,
+    totalPublishedProducts,
+    outOfStockProducts
   };
 }
 
@@ -64,20 +75,38 @@ export async function getEvents(includeUnpublished = false) {
 export async function createEvent(data: any) {
   await connectMongo();
   const newEvent = await EventModel.create(data);
+  revalidatePath('/events');
   return JSON.parse(JSON.stringify(newEvent));
 }
 
 export async function updateEvent(id: string, data: any) {
   await connectMongo();
   const updatedEvent = await EventModel.findByIdAndUpdate(id, data, { new: true });
+  revalidatePath('/events');
+  if (updatedEvent) {
+    revalidatePath(`/events/${updatedEvent.slug}`);
+  }
   return JSON.parse(JSON.stringify(updatedEvent));
 }
 
 export async function deleteEvent(id: string) {
   await connectMongo();
+  const event = await EventModel.findById(id);
+  if (event && event.speakers && event.speakers.length > 0) {
+    for (const speaker of event.speakers) {
+      if (speaker.publicId) {
+        try {
+          await cloudinary.uploader.destroy(speaker.publicId);
+        } catch (err) {
+          console.error('Failed to delete speaker image from cloudinary:', err);
+        }
+      }
+    }
+  }
   await EventModel.findByIdAndDelete(id);
   // Optional: Also delete associated Media or let them be unlinked
   await Media.updateMany({ eventId: id }, { $unset: { eventId: 1 } });
+  revalidatePath('/events');
   return { success: true };
 }
 
@@ -188,7 +217,7 @@ export async function getMedia() {
 
   const livestreams: any[] = [];
 
-  return { photos, videos, livestreams };
+  return JSON.parse(JSON.stringify({ photos, videos, livestreams }));
 }
 
 export async function getAllMediaForAdmin() {
@@ -277,6 +306,8 @@ export async function getPublicLeadership() {
 export async function createLeadershipMember(data: any) {
   await connectMongo();
   const newMember = await Leadership.create(data);
+  revalidatePath('/leadership');
+  revalidatePath('/admin/leadership');
   return JSON.parse(JSON.stringify(newMember));
 }
 
@@ -284,11 +315,91 @@ export async function updateLeadershipMember(id: string, data: any) {
   await connectMongo();
   data.updatedAt = new Date();
   const updatedMember = await Leadership.findByIdAndUpdate(id, data, { new: true });
+  revalidatePath('/leadership');
+  revalidatePath('/admin/leadership');
   return JSON.parse(JSON.stringify(updatedMember));
 }
 
 export async function deleteLeadershipMember(id: string) {
   await connectMongo();
+  const member = await Leadership.findById(id);
+  if (member && member.profilePhoto && member.profilePhoto.publicId) {
+    try {
+      await cloudinary.uploader.destroy(member.profilePhoto.publicId);
+    } catch (err) {
+      console.error('Failed to delete leadership photo from cloudinary:', err);
+    }
+  }
   await Leadership.findByIdAndDelete(id);
+  revalidatePath('/leadership');
+  revalidatePath('/admin/leadership');
+  return { success: true };
+}
+
+// ---------------------------
+// SHOP PRODUCTS
+// ---------------------------
+import { ShopProduct } from './models';
+import { v2 as cloudinary } from 'cloudinary';
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+export async function getProducts(includeUnpublished = false) {
+  await connectMongo();
+  const query = includeUnpublished ? {} : { published: true, status: 'Active' };
+  const products = await ShopProduct.find(query).sort({ createdAt: -1 }).lean();
+  return JSON.parse(JSON.stringify(products));
+}
+
+export async function getProductBySlug(slug: string) {
+  await connectMongo();
+  const product = await ShopProduct.findOne({ slug }).lean();
+  if (!product) return null;
+  return JSON.parse(JSON.stringify(product));
+}
+
+export async function createProduct(data: any) {
+  await connectMongo();
+  const newProduct = await ShopProduct.create(data);
+  revalidatePath('/shop');
+  revalidatePath('/admin/shop');
+  revalidatePath('/admin/shop/products');
+  return JSON.parse(JSON.stringify(newProduct));
+}
+
+export async function updateProduct(id: string, data: any) {
+  await connectMongo();
+  const updatedProduct = await ShopProduct.findByIdAndUpdate(id, data, { new: true });
+  revalidatePath('/shop');
+  revalidatePath('/admin/shop');
+  revalidatePath('/admin/shop/products');
+  if (updatedProduct) {
+    revalidatePath(`/shop/${updatedProduct.slug}`);
+  }
+  return JSON.parse(JSON.stringify(updatedProduct));
+}
+
+export async function deleteProduct(id: string) {
+  await connectMongo();
+  const product = await ShopProduct.findById(id);
+  if (product && product.images && product.images.length > 0) {
+    for (const img of product.images) {
+      if (img.publicId) {
+        try {
+          await cloudinary.uploader.destroy(img.publicId);
+        } catch (err) {
+          console.error('Failed to delete from cloudinary:', err);
+        }
+      }
+    }
+  }
+  await ShopProduct.findByIdAndDelete(id);
+  revalidatePath('/shop');
+  revalidatePath('/admin/shop');
+  revalidatePath('/admin/shop/products');
   return { success: true };
 }

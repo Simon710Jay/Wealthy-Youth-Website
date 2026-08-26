@@ -53,7 +53,14 @@ export interface IEvent extends Document {
   category?: string;
   registrationOpen?: Date;
   registrationClose?: Date;
-  speakers: string[];
+  speakers: {
+    name: string;
+    role: string;
+    imageUrl?: string;
+    publicId?: string;
+    bio?: string;
+    displayOrder: number;
+  }[];
   gallery: string[];
   registrationRequired: boolean;
   featured: boolean;
@@ -72,7 +79,14 @@ const EventSchema = new Schema<IEvent>({
   category: { type: String },
   registrationOpen: { type: Date },
   registrationClose: { type: Date },
-  speakers: [{ type: String }],
+  speakers: [{ 
+    name: { type: String, required: true },
+    role: { type: String, required: true },
+    imageUrl: { type: String },
+    publicId: { type: String },
+    bio: { type: String },
+    displayOrder: { type: Number, default: 0 }
+  }],
   gallery: [{ type: String }],
   registrationRequired: { type: Boolean, default: true },
   featured: { type: Boolean, default: false },
@@ -184,25 +198,42 @@ export interface IShopProduct extends Document {
   name: string;
   slug: string;
   description: string;
-  images: string[];
+  images: { url: string; publicId: string }[];
   price: number;
+  discountPrice?: number;
+  currency: string;
   category: string;
-  inventory: number;
+  stockQuantity: number;
+  sku?: string;
+  sizes?: string[];
+  colors?: string[];
   featured: boolean;
+  published: boolean;
+  status: 'Active' | 'Draft' | 'Out of Stock';
   createdAt: Date;
+  updatedAt: Date;
 }
 
 const ShopProductSchema = new Schema<IShopProduct>({
   name: { type: String, required: true },
   slug: { type: String, required: true, unique: true },
   description: { type: String, required: true },
-  images: [{ type: String }],
+  images: [{ 
+    url: { type: String, required: true },
+    publicId: { type: String, required: true }
+  }],
   price: { type: Number, required: true },
+  discountPrice: { type: Number },
+  currency: { type: String, default: 'NGN' },
   category: { type: String, required: true },
-  inventory: { type: Number, default: 0 },
+  stockQuantity: { type: Number, default: 0 },
+  sku: { type: String },
+  sizes: [{ type: String }],
+  colors: [{ type: String }],
   featured: { type: Boolean, default: false },
-  createdAt: { type: Date, default: Date.now },
-});
+  published: { type: Boolean, default: false },
+  status: { type: String, enum: ['Active', 'Draft', 'Out of Stock'], default: 'Draft' },
+}, { timestamps: true });
 
 export const ShopProduct = mongoose.models.ShopProduct || mongoose.model<IShopProduct>('ShopProduct', ShopProductSchema);
 
