@@ -11,13 +11,15 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-export async function GET(request: Request, { params }: { params: { id: string } }) {
+export async function GET(request: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
     await connectMongo();
+    const resolvedParams = await params;
+    const { id } = resolvedParams;
     
     // Check if id is ObjectId or slug
-    const isObjectId = params.id.match(/^[0-9a-fA-F]{24}$/);
-    const query = isObjectId ? { _id: params.id } : { slug: params.id };
+    const isObjectId = id.match(/^[0-9a-fA-F]{24}$/);
+    const query = isObjectId ? { _id: id } : { slug: id };
     
     const product = await ShopProduct.findOne(query);
     
@@ -32,7 +34,7 @@ export async function GET(request: Request, { params }: { params: { id: string }
   }
 }
 
-export async function PUT(request: Request, { params }: { params: { id: string } }) {
+export async function PUT(request: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
     const session = await getServerSession(authOptions);
     if (!session || (session.user.role !== 'super_admin' && session.user.role !== 'shop_admin')) {
@@ -40,9 +42,11 @@ export async function PUT(request: Request, { params }: { params: { id: string }
     }
 
     await connectMongo();
+    const resolvedParams = await params;
+    const { id } = resolvedParams;
     const data = await request.json();
     
-    const product = await ShopProduct.findByIdAndUpdate(params.id, data, { new: true, runValidators: true });
+    const product = await ShopProduct.findByIdAndUpdate(id, data, { new: true, runValidators: true });
     
     if (!product) {
       return NextResponse.json({ error: 'Product not found' }, { status: 404 });
@@ -55,7 +59,7 @@ export async function PUT(request: Request, { params }: { params: { id: string }
   }
 }
 
-export async function DELETE(request: Request, { params }: { params: { id: string } }) {
+export async function DELETE(request: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
     const session = await getServerSession(authOptions);
     if (!session || (session.user.role !== 'super_admin' && session.user.role !== 'shop_admin')) {
@@ -63,8 +67,10 @@ export async function DELETE(request: Request, { params }: { params: { id: strin
     }
 
     await connectMongo();
+    const resolvedParams = await params;
+    const { id } = resolvedParams;
     
-    const product = await ShopProduct.findById(params.id);
+    const product = await ShopProduct.findById(id);
     
     if (!product) {
       return NextResponse.json({ error: 'Product not found' }, { status: 404 });
@@ -83,7 +89,7 @@ export async function DELETE(request: Request, { params }: { params: { id: strin
       }
     }
     
-    await ShopProduct.findByIdAndDelete(params.id);
+    await ShopProduct.findByIdAndDelete(id);
     
     return NextResponse.json({ message: 'Product deleted successfully' });
   } catch (error: any) {
